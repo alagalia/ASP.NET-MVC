@@ -87,14 +87,12 @@ namespace CarDealer.Services
             };
         }
 
-        //public EditPartVm EditPart(EditPartBm bind)
-        //{
-        //    return new EditPartVm()
-        //    {
-        //        Id = bind.Id,
-        //        Price = bind.Price,
-        //        Quantity = bind.Quantity
-        //    };
-        //}
+        public void EditPart(EditPartBm bind)
+        {
+            Part part = this.Context.Parts.Find(bind.Id);
+            part.Price = bind.Price;
+            part.Quantity = bind.Quantity;
+            this.Context.SaveChanges();
+        }
     }
 }

@@ -32,14 +32,17 @@ namespace CarDealerApp.Controllers
             return this.View(vm);
         }
 
-        //TODO
-        //[HttpPost]
-        //[Route("edit/{id}")]
-        //public ActionResult Edit([Bind(Include = "Id, Price, Quantity")] EditPartBm bind)
-        //{
-        //    EditPartVm vm = this.service.GetEditVm(bind);
-        //    return this.View(vm);
-        //}
+        [HttpPost]
+        [Route("edit/{id}")]
+        public ActionResult Edit([Bind(Include = "Id, Price, Quantity")] EditPartBm bind)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.service.EditPart(bind);
+                return this.RedirectToAction("All", "Parts");
+            }
+            return this.View(this.service.GetEditVm(bind.Id));
+        }
 
         [HttpGet]
         [Route("delete/{id}")]
