@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CarDealer.Models.ViewModels.AddPartSupplierVm>
+
+@{
+    ViewBag.Title = "Add part";
+}
+
+<h2>Add part</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label for="name">Name: </label>
+        <input id="name" type="text" name="name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="price">Price: </label>
+        <input id="price" type="number" step="0.1" name="price" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="quantity">Quantity: </label>
+        <input id="quantity" type="number" name="quantity" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="supplier">Supplier: </label>
+        <select name="supplierId" id="supplier" class="form-control">
+            @foreach (var supplier in Model)
+            {
+                <option value="@supplier.Id">@supplier.Name</option>
+            }
+        </select>
+    </div>
+        <div class="form-group">
+            <input type="submit" value="Add part" />
+        </div>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "suppliers")
+</div>

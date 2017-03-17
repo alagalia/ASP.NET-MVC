@@ -1,0 +1,57 @@
+﻿@using CarDealer.Models.ViewModels;
+@model SaleVm
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>Sale</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.Make)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Car.Make)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.Model)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Car.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.TravelledDistance)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Car.TravelledDistance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriceWithDiscount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PriceWithDiscount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Discount)
+        </dd>
+
+    </dl>
+</div>

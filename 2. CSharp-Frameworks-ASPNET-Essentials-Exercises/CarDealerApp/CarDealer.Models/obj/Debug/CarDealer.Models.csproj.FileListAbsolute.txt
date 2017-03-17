@@ -1,0 +1,10 @@
+D:\SOFTUNI-C#\ASP.NET\2. CSharp-Frameworks-ASPNET-Essentials-Exercises\CarDealerApp-Skeleton\CarDealer.Models\bin\Debug\CarDealer.Models.dll
+D:\SOFTUNI-C#\ASP.NET\2. CSharp-Frameworks-ASPNET-Essentials-Exercises\CarDealerApp-Skeleton\CarDealer.Models\bin\Debug\CarDealer.Models.pdb
+D:\SOFTUNI-C#\ASP.NET\2. CSharp-Frameworks-ASPNET-Essentials-Exercises\CarDealerApp-Skeleton\CarDealer.Models\obj\Debug\CarDealer.Models.csprojResolveAssemblyReference.cache
+D:\SOFTUNI-C#\ASP.NET\2. CSharp-Frameworks-ASPNET-Essentials-Exercises\CarDealerApp-Skeleton\CarDealer.Models\obj\Debug\CarDealer.Models.dll
+D:\SOFTUNI-C#\ASP.NET\2. CSharp-Frameworks-ASPNET-Essentials-Exercises\CarDealerApp-Skeleton\CarDealer.Models\obj\Debug\CarDealer.Models.pdb
+D:\SOFTUNI-C#\ASP.NET\2. CSharp-Frameworks-ASPNET-Essentials-Exercises\CarDealerApp\CarDealer.Models\bin\Debug\CarDealer.Models.dll
+D:\SOFTUNI-C#\ASP.NET\2. CSharp-Frameworks-ASPNET-Essentials-Exercises\CarDealerApp\CarDealer.Models\bin\Debug\CarDealer.Models.pdb
+D:\SOFTUNI-C#\ASP.NET\2. CSharp-Frameworks-ASPNET-Essentials-Exercises\CarDealerApp\CarDealer.Models\obj\Debug\CarDealer.Models.csprojResolveAssemblyReference.cache
+D:\SOFTUNI-C#\ASP.NET\2. CSharp-Frameworks-ASPNET-Essentials-Exercises\CarDealerApp\CarDealer.Models\obj\Debug\CarDealer.Models.dll
+D:\SOFTUNI-C#\ASP.NET\2. CSharp-Frameworks-ASPNET-Essentials-Exercises\CarDealerApp\CarDealer.Models\obj\Debug\CarDealer.Models.pdb

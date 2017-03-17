@@ -1,0 +1,23 @@
+﻿@model CarDealer.Models.ViewModels.AboutCustomerVm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+@{
+    ViewBag.Title = "About customer";
+}
+
+<h2>
+    @Model.Name
+</h2>
+
+<p>
+    Bought cars count - @Model.BoughtCarsCount
+</p>
+
+<p>
+    Total spent money - @Model.TotalSpentMoney
+</p>
