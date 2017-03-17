@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarDealer.Data;
+using CarDealer.Models.BindingModels;
 using CarDealer.Models.EntityModels;
 using CarDealer.Models.ViewModels;
 using CarDealer.Services;
@@ -23,7 +24,26 @@ namespace CarDealerApp.Controllers
             this.service = new CarService();
         }
 
-        // GET: Cars
+        [HttpPost]
+        [Route("add")]
+        public ActionResult Add([Bind(Include = "Make, Model, TravelledDistance")] AddCarBm bind)
+        {
+            if (this.ModelState.IsValid)
+            {
+                this.service.AddCar(bind);
+                return this.RedirectToAction("All", "Cars");
+            }
+            return this.View(this.service.GetAddCarVm(bind));
+
+        }
+
+        [HttpGet]
+        [Route("add")]
+        public ActionResult Add()
+        {
+            return View();
+        }
+
         [Route("{make?}")]
         public ActionResult All(string make)
         {

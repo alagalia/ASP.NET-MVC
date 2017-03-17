@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindingModels\AddCarBm.cs" />
     <Compile Include="BindingModels\AddCustomerBm.cs" />
     <Compile Include="BindingModels\AddPartBm.cs" />
     <Compile Include="BindingModels\DeletePartBm.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="EntityModels\Sale.cs" />
     <Compile Include="EntityModels\Supplier.cs" />
     <Compile Include="ViewModels\AboutCustomerVm.cs" />
+    <Compile Include="ViewModels\AddCarVm.cs" />
     <Compile Include="ViewModels\AddPartSupplierVm.cs" />
     <Compile Include="ViewModels\AllCustomerVm.cs" />
     <Compile Include="ViewModels\AllPartVm.cs" />

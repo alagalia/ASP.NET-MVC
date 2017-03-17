@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using CarDealer.Data;
+using CarDealer.Models.BindingModels;
 using CarDealer.Models.EntityModels;
 using CarDealer.Models.ViewModels;
 
@@ -46,6 +47,27 @@ namespace CarDealer.Services
             {
                 Car = wantedCarVm,
                 Parts = carPartsVms
+            };
+        }
+
+        public void AddCar(AddCarBm bind)
+        {
+            this.Context.Cars.Add(new Car()
+            {
+                Make = bind.Make,
+                Model = bind.Model,
+                TravelledDistance = bind.TravelledDistance
+            });
+            this.Context.SaveChanges();
+        }
+
+        public AddCarVm GetAddCarVm(AddCarBm bind)
+        {
+            return new AddCarVm()
+            {
+                Make = bind.Make,
+                Model = bind.Model,
+                TravelledDistance = bind.TravelledDistance
             };
         }
     }
