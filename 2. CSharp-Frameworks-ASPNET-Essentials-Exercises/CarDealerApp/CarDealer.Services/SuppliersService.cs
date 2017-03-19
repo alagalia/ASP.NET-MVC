@@ -79,5 +79,27 @@ namespace CarDealer.Services
 
             //this.AddLog(userId, OperationLog.Delete, "suppliers");
         }
+
+        public EditSupplierVm GetEditSupplierVm(int id)
+        {
+            Supplier supplier = Context.Suppliers.Find(id);
+            return new EditSupplierVm()
+            {
+                Id = id,
+                Name = supplier.Name,
+                IsImporter = supplier.IsImporter,
+                HasParts = supplier.Parts.Any()
+            };
+        }
+
+        public void EditSupplier(EditSupplierBm bind, int id)
+        {
+            Supplier supplier = this.Context.Suppliers.Find(bind.Id);
+            supplier.IsImporter = bind.IsImporter;
+            supplier.Name = bind.Name;
+            this.Context.SaveChanges();
+
+            //this.AddLog(userId, OperationLog.Edit, "suppliers");
+        }
     }
 }

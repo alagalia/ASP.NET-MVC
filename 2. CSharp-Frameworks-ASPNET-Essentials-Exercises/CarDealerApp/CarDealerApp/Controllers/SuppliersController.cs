@@ -104,5 +104,45 @@ namespace CarDealerApp.Controllers
             DeleteSupplierVm vm = this.service.GetDeleteSupplierVm(bind.Id);
             return this.View(vm);
         }
+
+
+        [HttpGet]
+        [Route("edit/{id:int}")]
+        public ActionResult Edit(int id)
+        {
+            //--------check if user is NOT logged----------------------------------
+            var httpCookie = this.Request.Cookies.Get("sessionId");
+            if (httpCookie == null || !AuthenticationManager.IsAuthenticated(httpCookie.Value))
+            {
+                return this.RedirectToAction("Login", "Users");
+            }
+            //--------------------------------------------------------------------
+           EditSupplierVm vm = service.GetEditSupplierVm(id);
+           return View(vm);
+        }
+
+
+        [HttpPost]
+        [Route("edit/{id:int}")]
+        public ActionResult Edit([Bind]EditSupplierBm bind)
+        {
+            //--------check if user is NOT logged----------------------------------
+            var httpCookie = this.Request.Cookies.Get("sessionId");
+            if (httpCookie == null || !AuthenticationManager.IsAuthenticated(httpCookie.Value))
+            {
+                return this.RedirectToAction("Login", "Users");
+            }
+            //--------------------------------------------------------------------
+
+            if (this.ModelState.IsValid)
+            {
+                User loggedInUser = AuthenticationManager.GetAuthenticatedUser(httpCookie.Value);
+                this.service.EditSupplier(bind, loggedInUser.Id);
+                return this.RedirectToAction("All");
+            }
+
+            EditSupplierVm vm = this.service.GetEditSupplierVm(bind.Id);
+            return this.View(vm);
+        }
     }
 }
