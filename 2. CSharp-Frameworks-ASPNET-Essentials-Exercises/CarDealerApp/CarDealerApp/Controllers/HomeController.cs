@@ -27,5 +27,15 @@ namespace CarDealerApp.Controllers
 
             return View();
         }
+
+
+        //testing exception
+        [HttpGet]
+        [Route("ex")]
+        [HandleError(ExceptionType = typeof(Exception), View = "ArgumentException")]
+        public ActionResult Ex()
+        {
+            throw new Exception("Some message for exeption");
+        }
     }
 }

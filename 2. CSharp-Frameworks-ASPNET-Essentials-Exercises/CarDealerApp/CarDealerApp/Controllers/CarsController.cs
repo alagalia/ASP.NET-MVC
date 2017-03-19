@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using CarDealer.Models.BindingModels;
 using CarDealer.Models.EntityModels;
@@ -20,6 +21,7 @@ namespace CarDealerApp.Controllers
 
         [HttpPost]
         [Route("add")]
+        [HandleError(ExceptionType = typeof(ArgumentOutOfRangeException), View = "ArgumentException")]
         public ActionResult AddCarWithParts([Bind(Include = "Make, Model, TravelledDistance")] AddCarBm bind)
         {
             //--------check if user is NOT logged----------------------------------
@@ -30,6 +32,15 @@ namespace CarDealerApp.Controllers
             }
             //--------------------------------------------------------------------
 
+
+            //exeption testing-------------------------------
+
+            if (bind.TravelledDistance < 0)
+            {
+                throw new ArgumentOutOfRangeException("bind", bind.TravelledDistance, "The car cannot have travelled distance with negative value!");
+            }
+
+            //end exeption testing -------------------------
             if (this.ModelState.IsValid)
             {
                 User loggedInUser = AuthenticationManager.GetAuthenticatedUser(httpCookie.Value);
