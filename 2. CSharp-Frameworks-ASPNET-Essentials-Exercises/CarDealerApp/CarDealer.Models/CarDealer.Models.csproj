@@ -73,6 +73,7 @@
     <Compile Include="ViewModels\DeletePartVm.cs" />
     <Compile Include="ViewModels\EditCustomerVm.cs" />
     <Compile Include="ViewModels\EditPartVm.cs" />
+    <Compile Include="ViewModels\Logs\AllLogsPageVm.cs" />
     <Compile Include="ViewModels\Logs\AllLogsVm.cs" />
     <Compile Include="ViewModels\PartVm.cs" />
     <Compile Include="ViewModels\Sales\AddSaleCarVm.cs" />

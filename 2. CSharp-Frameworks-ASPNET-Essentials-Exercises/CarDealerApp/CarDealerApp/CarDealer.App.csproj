@@ -217,6 +217,7 @@
     <Content Include="Views\Logs\Details.cshtml" />
     <Content Include="Views\Logs\Edit.cshtml" />
     <Content Include="Views\Logs\All.cshtml" />
+    <Content Include="Views\Logs\DeleteAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
