@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
 using CarDealer.Data;
@@ -34,6 +36,7 @@ namespace CarDealer.Services
 
             return viewModels;
         }
+        
 
         public CarPartsVm GetACarWithParts(int id)
         {
@@ -68,6 +71,24 @@ namespace CarDealer.Services
                 Make = bind.Make,
                 Model = bind.Model,
                 TravelledDistance = bind.TravelledDistance
+            };
+        }
+
+        public AddCarWithPartsVm GetAddCarWithPartsVm(AddCarBm bind)
+        {
+            IEnumerable<AllPartVm> partsVm = this.Context.Parts.Take(10).Select(p => new AllPartVm()
+            {
+                Id = p.Id,
+                Price = p.Price,
+                Quantity = p.Quantity,
+                Name = p.Name,
+                SupplierName = p.Supplier.Name
+            });
+            return  new AddCarWithPartsVm()
+            {
+                Parts = partsVm,
+                Make = bind.Make,
+                Model = bind.Model
             };
         }
     }

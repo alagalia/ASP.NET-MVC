@@ -9,6 +9,7 @@ using AutoMapper;
 using CarDealer.Models.BindingModels;
 using CarDealer.Models.EntityModels;
 using CarDealer.Models.ViewModels;
+using CarDealer.Models.ViewModels.Sales;
 
 namespace CarDealerApp
 {

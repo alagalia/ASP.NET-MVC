@@ -29,7 +29,7 @@ namespace CarDealer.Services
                 throw new ArgumentException("Invalid type of suppliers!");
             }
 
-            //Mapper.Initialize(cfg => cfg.CreateMap<Supplier, SupplierVm>());
+            Mapper.Initialize(cfg => cfg.CreateMap<Supplier, SupplierVm>());
 
             IEnumerable<SupplierVm> viewModels =
                 Mapper.Map<IEnumerable<Supplier>, IEnumerable<SupplierVm>>(suppliersWanted);

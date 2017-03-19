@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CarDealer.Data;
 using CarDealer.Models.BindingModels;
-using CarDealer.Models.EntityModels;
 using CarDealer.Models.ViewModels;
 using CarDealer.Services;
+using CarDealerApp.Security;
 
 namespace CarDealerApp.Controllers
 {
@@ -26,23 +19,51 @@ namespace CarDealerApp.Controllers
 
         [HttpPost]
         [Route("add")]
-        public ActionResult Add([Bind(Include = "Make, Model, TravelledDistance")] AddCarBm bind)
+        public ActionResult AddCarWithParts([Bind(Include = "Make, Model, TravelledDistance")] AddCarBm bind)
         {
             if (this.ModelState.IsValid)
             {
                 this.service.AddCar(bind);
                 return this.RedirectToAction("All", "Cars");
             }
-            return this.View(this.service.GetAddCarVm(bind));
+            return this.View(this.service.GetAddCarWithPartsVm(bind));
 
         }
 
         [HttpGet]
         [Route("add")]
-        public ActionResult Add()
+        public ActionResult AddCarWithParts()
         {
-            return View();
+            //--------check if user is NOT logged----------------------------------
+            var httpCookie = this.Request.Cookies.Get("sessionId");
+            if (httpCookie == null || !AuthenticationManager.IsAuthenticated(httpCookie.Value))
+            {
+                return this.RedirectToAction("Login", "Users");
+            }
+            //--------------------------------------------------------------------
+            return View(this.service.GetAddCarWithPartsVm(new AddCarBm()));
         }
+
+
+        //[HttpPost]
+        //[Route("add")]
+        //public ActionResult Add([Bind(Include = "Make, Model, TravelledDistance")] AddCarBm bind)
+        //{
+        //    if (this.ModelState.IsValid)
+        //    {
+        //        this.service.AddCar(bind);
+        //        return this.RedirectToAction("All", "Cars");
+        //    }
+        //    return this.View(this.service.GetAddCarVm(bind));
+
+        //}
+
+        //[HttpGet]
+        //[Route("add")]
+        //public ActionResult Add()
+        //{
+        //    return View();
+        //}
 
         [Route("{make?}")]
         public ActionResult All(string make)
