@@ -58,7 +58,8 @@ namespace CarDealerApp.Controllers
 
             if (ModelState.IsValid)
             {
-                this.service.AddSupplier(bind);
+                User loggedInUser = AuthenticationManager.GetAuthenticatedUser(httpCookie.Value);
+                this.service.AddSupplier(bind, loggedInUser.Id);
                 return this.RedirectToAction("All");
             }
             AddSupplierVm vm = this.service.GetAddSupplierVm(bind);

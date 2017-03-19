@@ -55,6 +55,7 @@
     <Compile Include="BindingModels\Users\RegisterUserBm.cs" />
     <Compile Include="EntityModels\Car.cs" />
     <Compile Include="EntityModels\Customer.cs" />
+    <Compile Include="EntityModels\Log.cs" />
     <Compile Include="EntityModels\Login.cs" />
     <Compile Include="EntityModels\Part.cs" />
     <Compile Include="EntityModels\User.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="ViewModels\DeletePartVm.cs" />
     <Compile Include="ViewModels\EditCustomerVm.cs" />
     <Compile Include="ViewModels\EditPartVm.cs" />
+    <Compile Include="ViewModels\Logs\AllLogsVm.cs" />
     <Compile Include="ViewModels\PartVm.cs" />
     <Compile Include="ViewModels\Sales\AddSaleCarVm.cs" />
     <Compile Include="ViewModels\Sales\AddSaleConfirmationVm.cs" />

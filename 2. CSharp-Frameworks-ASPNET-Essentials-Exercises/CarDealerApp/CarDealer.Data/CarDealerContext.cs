@@ -23,10 +23,8 @@ namespace CarDealer.Data
         public virtual DbSet<Sale> Sales { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
+        public virtual DbSet<Log> Logs { get; set; }
 
-        //public System.Data.Entity.DbSet<CarDealer.Models.ViewModels.AllCustomerVm> AllCustomerVms { get; set; }
-
-        //public System.Data.Entity.DbSet<CarDealer.Models.ViewModels.AddCarWithPartsVm> AddCarWithPartsVms { get; set; }
     }
 
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
@@ -76,7 +77,7 @@ namespace CarDealer.Services
             return vm;
         }
 
-        public void AddSale(AddSalesBm bind)
+        public void AddSale(AddSalesBm bind, int userId)
         {
             Car car = this.Context.Cars.Find(bind.CarId);
             Customer customer = this.Context.Customers.Find(bind.CustomerId);
@@ -87,8 +88,24 @@ namespace CarDealer.Services
                 Discount = (double) bind.Discount
             });
             this.Context.SaveChanges();
-        }
 
+            this.AddLog(userId, OperationLog.Add, "sales");
+
+        }
+        private void AddLog(int userId, OperationLog operation, string modifiedTable)
+        {
+            User loggedUser = this.Context.Users.Find(userId);
+            Log log = new Log()
+            {
+                User = loggedUser,
+                ModifiedAt = DateTime.Now,
+                ModifiedTableName = modifiedTable,
+                Operation = operation
+            };
+
+            this.Context.Logs.Add(log);
+            this.Context.SaveChanges();
+        }
         public AddSaleConfirmationVm GetAddSaleConfirmationVm(AddSalesBm bind)
         {
             Car car = this.Context.Cars.Find(bind.CarId);

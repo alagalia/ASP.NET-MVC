@@ -114,7 +114,8 @@ namespace CarDealerApp.Controllers
 
             if (ModelState.IsValid)
             {
-                this.service.AddSale(bind);
+                User loggedInUser = AuthenticationManager.GetAuthenticatedUser(httpCookie.Value);
+                this.service.AddSale(bind, loggedInUser.Id);
                 return this.RedirectToAction("All");
             }
 

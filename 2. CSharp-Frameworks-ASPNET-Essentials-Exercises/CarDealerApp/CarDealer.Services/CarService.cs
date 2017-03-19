@@ -53,7 +53,7 @@ namespace CarDealer.Services
             };
         }
 
-        public void AddCar(AddCarBm bind)
+        public void AddCar(AddCarBm bind, int userId)
         {
             this.Context.Cars.Add(new Car()
             {
@@ -62,6 +62,8 @@ namespace CarDealer.Services
                 TravelledDistance = bind.TravelledDistance
             });
             this.Context.SaveChanges();
+
+            this.AddLog(userId, OperationLog.Add, "cars");
         }
 
         public AddCarVm GetAddCarVm(AddCarBm bind)
@@ -90,6 +92,21 @@ namespace CarDealer.Services
                 Make = bind.Make,
                 Model = bind.Model
             };
+        }
+
+        private void AddLog(int userId, OperationLog operation, string modifiedTable)
+        {
+            User loggedUser = this.Context.Users.Find(userId);
+            Log log = new Log()
+            {
+                User = loggedUser,
+                ModifiedAt = DateTime.Now,
+                ModifiedTableName = modifiedTable,
+                Operation = operation
+            };
+
+            this.Context.Logs.Add(log);
+            this.Context.SaveChanges();
         }
     }
 }

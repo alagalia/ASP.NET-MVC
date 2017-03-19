@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using CarDealer.Models.BindingModels;
+using CarDealer.Models.EntityModels;
 using CarDealer.Models.ViewModels;
 using CarDealer.Services;
 using CarDealerApp.Security;
@@ -21,9 +22,18 @@ namespace CarDealerApp.Controllers
         [Route("add")]
         public ActionResult AddCarWithParts([Bind(Include = "Make, Model, TravelledDistance")] AddCarBm bind)
         {
+            //--------check if user is NOT logged----------------------------------
+            var httpCookie = this.Request.Cookies.Get("sessionId");
+            if (httpCookie == null || !AuthenticationManager.IsAuthenticated(httpCookie.Value))
+            {
+                return this.RedirectToAction("Login", "Users");
+            }
+            //--------------------------------------------------------------------
+
             if (this.ModelState.IsValid)
             {
-                this.service.AddCar(bind);
+                User loggedInUser = AuthenticationManager.GetAuthenticatedUser(httpCookie.Value);
+                this.service.AddCar(bind, loggedInUser.Id);
                 return this.RedirectToAction("All", "Cars");
             }
             return this.View(this.service.GetAddCarWithPartsVm(bind));
