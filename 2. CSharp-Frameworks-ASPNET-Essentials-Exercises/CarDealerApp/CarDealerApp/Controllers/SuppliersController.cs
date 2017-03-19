@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using CarDealer.Data;
+using CarDealer.Models.BindingModels.Suppliers;
 using CarDealer.Models.EntityModels;
 using CarDealer.Models.ViewModels;
+using CarDealer.Models.ViewModels.Sales;
+using CarDealer.Models.ViewModels.Supplier;
 using CarDealer.Services;
+using CarDealerApp.Security;
 
 namespace CarDealerApp.Controllers
 {
+    [RoutePrefix("suppliers")]
     public class SuppliersController : Controller
     {
         private SuppliersService service;
@@ -22,14 +20,89 @@ namespace CarDealerApp.Controllers
             this.service = new SuppliersService();
         }
 
-        [Route("suppliers/{type?}")]
+
+        [Route("{type?}/")]
         public ActionResult All(string type)
         {
             IEnumerable<SupplierVm> viewModels = this.service.GetSuppliersFromDb(type);
             return View(viewModels);
         }
 
-        
-       
+        [HttpGet]
+        [Route("add/")]
+        public ActionResult Add()
+        {
+            //--------check if user is NOT logged----------------------------------
+            var httpCookie = this.Request.Cookies.Get("sessionId");
+            if (httpCookie == null || !AuthenticationManager.IsAuthenticated(httpCookie.Value))
+            {
+                return this.RedirectToAction("Login", "Users");
+            }
+            //--------------------------------------------------------------------
+            
+            return View();
+        }
+
+
+        [HttpPost]
+        [Route("add/")]
+        public ActionResult Add([Bind] AddSupliersBm bind)
+        {
+            //--------check if user is NOT logged----------------------------------
+            var httpCookie = this.Request.Cookies.Get("sessionId");
+            if (httpCookie == null || !AuthenticationManager.IsAuthenticated(httpCookie.Value))
+            {
+                return this.RedirectToAction("Login", "Users");
+            }
+            //--------------------------------------------------------------------
+
+            if (ModelState.IsValid)
+            {
+                this.service.AddSupplier(bind);
+                return this.RedirectToAction("All");
+            }
+            AddSupplierVm vm = this.service.GetAddSupplierVm(bind);
+            return View(vm);
+            
+        }
+
+        [HttpGet]
+        [Route("delete/{id:int}")]
+        public ActionResult Delete(int id)
+        {
+            //--------check if user is NOT logged----------------------------------
+            var httpCookie = this.Request.Cookies.Get("sessionId");
+            if (httpCookie == null || !AuthenticationManager.IsAuthenticated(httpCookie.Value))
+            {
+                return this.RedirectToAction("Login", "Users");
+            }
+            //--------------------------------------------------------------------
+            DeleteSupplierVm vm = service.GetDeleteSupplierVm(id);
+            return View(vm);
+        }
+
+
+        [HttpPost]
+        [Route("delete/{id:int}")]
+        public ActionResult Delete([Bind(Include = "Id")]DeleteSupplierBm bind)
+        {
+            //--------check if user is NOT logged----------------------------------
+            var httpCookie = this.Request.Cookies.Get("sessionId");
+            if (httpCookie == null || !AuthenticationManager.IsAuthenticated(httpCookie.Value))
+            {
+                return this.RedirectToAction("Login", "Users");
+            }
+            //--------------------------------------------------------------------
+
+            if (this.ModelState.IsValid)
+            {
+                User loggedInUser = AuthenticationManager.GetAuthenticatedUser(httpCookie.Value);
+                this.service.DeleteSupplier(bind, loggedInUser.Id);
+                return this.RedirectToAction("All");
+            }
+
+            DeleteSupplierVm vm = this.service.GetDeleteSupplierVm(bind.Id);
+            return this.View(vm);
+        }
     }
 }

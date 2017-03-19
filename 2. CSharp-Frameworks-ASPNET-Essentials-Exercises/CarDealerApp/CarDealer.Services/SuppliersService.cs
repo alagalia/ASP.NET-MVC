@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using CarDealer.Models.BindingModels.Suppliers;
 using CarDealer.Models.EntityModels;
 using CarDealer.Models.ViewModels;
+using CarDealer.Models.ViewModels.Supplier;
 
 namespace CarDealer.Services
 {
@@ -37,6 +39,45 @@ namespace CarDealer.Services
             return viewModels;
         }
 
-      
+
+        public AddSupplierVm GetAddSupplierVm(AddSupliersBm bind)
+        {
+            return new AddSupplierVm()
+            {
+                Name = bind.Name,
+                IsImporter = bind.IsImporter
+            };
+        }
+
+        public void AddSupplier(AddSupliersBm bind)
+        {
+            this.Context.Suppliers.Add(new Supplier()
+            {
+                Name = bind.Name,
+                IsImporter = bind.IsImporter
+            });
+            this.Context.SaveChanges();
+        }
+
+        public DeleteSupplierVm GetDeleteSupplierVm(int id)
+        {
+            Supplier supplier = Context.Suppliers.Find(id);
+            return new DeleteSupplierVm()
+            {
+                Id = id,
+                Name = supplier.Name,
+                IsImporter = supplier.IsImporter,
+                HasParts = supplier.Parts.Any()
+            };
+        }
+
+        public void DeleteSupplier(DeleteSupplierBm bind, int userId)
+        {
+            Supplier supplier = this.Context.Suppliers.Find(bind.Id);
+            this.Context.Suppliers.Remove(supplier);
+            this.Context.SaveChanges();
+
+            //this.AddLog(userId, OperationLog.Delete, "suppliers");
+        }
     }
 }

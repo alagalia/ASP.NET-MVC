@@ -48,6 +48,8 @@
     <Compile Include="BindingModels\EditCustomerBm.cs" />
     <Compile Include="BindingModels\EditPartBm.cs" />
     <Compile Include="BindingModels\Sales\AddSalesBm.cs" />
+    <Compile Include="BindingModels\Suppliers\AddSupliersBm.cs" />
+    <Compile Include="BindingModels\Suppliers\DeleteSupplierBm.cs" />
     <Compile Include="BindingModels\Users\LoginUserBm.cs" />
     <Compile Include="BindingModels\Users\RegisterUserBm.cs" />
     <Compile Include="EntityModels\Car.cs" />
@@ -74,6 +76,8 @@
     <Compile Include="ViewModels\Sales\AddSaleConfirmationVm.cs" />
     <Compile Include="ViewModels\Sales\AddSaleCustomerVm.cs" />
     <Compile Include="ViewModels\Sales\AddSaleVm.cs" />
+    <Compile Include="ViewModels\Supplier\AddSupplierVm.cs" />
+    <Compile Include="ViewModels\Supplier\DeleteSupplierVm.cs" />
     <Compile Include="ViewModels\Users\LoginUserVm.cs" />
     <Compile Include="ViewModels\Users\RegisterUserVm.cs" />
     <Compile Include="ViewModels\Sales\SaleVm.cs" />

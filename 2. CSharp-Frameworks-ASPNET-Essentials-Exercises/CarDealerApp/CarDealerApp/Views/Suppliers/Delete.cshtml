@@ -1,16 +1,16 @@
-﻿@model CarDealer.Models.EntityModels.Supplier
+﻿@model CarDealer.Models.ViewModels.Supplier.DeleteSupplierVm
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete supplier";
 }
 
-<h2>Delete</h2>
+<h2>Delete supplier</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to delete this supplier ?</h3>
 <div>
-    <h4>Supplier</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt type="number" hidden="hidden" value="@Model.Id" name="Id" />
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -29,12 +29,25 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
+        if (!Model.HasParts )
+        {
+            <form method="post">
+                <input type="number" hidden="hidden" name="Id" value="@Model.Id" />
+                <div class="form-group">
+                    <input class="btn btn-danger" type="submit" value="Delete" />
+                </div>
+            </form>
+        }
+        else
+        {
+            <p class="alert alert-danger">Cannot remove supplier! Supplier has parts in stock!</p>
+        }
+        @Html.ActionLink("All suppliers", "All");
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
     }
 </div>
+
+
