@@ -5,11 +5,14 @@ using CarDealer.Models.BindingModels;
 using CarDealer.Models.EntityModels;
 using CarDealer.Models.ViewModels;
 using CarDealer.Services;
+using CarDealerApp.Filters;
 using CarDealerApp.Security;
 
 namespace CarDealerApp.Controllers
 {
+    
     [RoutePrefix("cars")]
+    [Log]
     public class CarsController : Controller
     {
         private CarService service;
@@ -18,7 +21,7 @@ namespace CarDealerApp.Controllers
         {
             this.service = new CarService();
         }
-
+        
         [HttpPost]
         [Route("add")]
         [HandleError(ExceptionType = typeof(ArgumentOutOfRangeException), View = "ArgumentException")]
@@ -34,13 +37,13 @@ namespace CarDealerApp.Controllers
 
 
             //exeption testing-------------------------------
-
             if (bind.TravelledDistance < 0)
             {
                 throw new ArgumentOutOfRangeException("bind", bind.TravelledDistance, "The car cannot have travelled distance with negative value!");
             }
-
             //end exeption testing -------------------------
+
+
             if (this.ModelState.IsValid)
             {
                 User loggedInUser = AuthenticationManager.GetAuthenticatedUser(httpCookie.Value);
@@ -53,6 +56,7 @@ namespace CarDealerApp.Controllers
 
         [HttpGet]
         [Route("add")]
+        
         public ActionResult AddCarWithParts()
         {
             //--------check if user is NOT logged----------------------------------

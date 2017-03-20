@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Car dealer APP</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -17,39 +17,58 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Car dealer APP", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (this.Request.Cookies.Get("sessionId") != null && AuthenticationManager.IsAuthenticated(this.Request.Cookies.Get("sessionId").Value))
                     {
-                        <li>
-                            <a href="/customers/all/ascending">Customers</a>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                Customers
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    @Html.ActionLink("Ascending", "all/ascending", "Customers")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Descending", "all/descending", "Customers")
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="dropdown">
                             <a class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                Sale
+                                Sales
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="/sales">All</a></li>
-                                <li><a href="/sales/discounted">Discounted</a></li>
-                                <li><a href="/sales/add">Add</a></li>
+                                <li>
+                                    @Html.ActionLink("All", null, "Sales")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Discounted", "discounted", "Sales")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Add", "add", "Sales")
+                                </li>
                             </ul>
                         </li>
-                        <li><a href="/cars">Cars</a></li>
-                        <li><a href="/parts/all">Parts</a></li>
+                        <li>
+                            @Html.ActionLink("Cars", null, "Cars")
+                        </li>
+                        <li>@Html.ActionLink("Parts", "all", "parts")</li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" type="button" data-toggle="dropdown">
                                 Suppliers
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="/suppliers/local">Local</a></li>
-                                <li><a href="/suppliers/importers">Importers</a></li>
-                                <li><a href="/suppliers">All</a></li>
-                                <li><a href="/suppliers/add">Add</a></li>
+                                <li>@Html.ActionLink("Local", "local", "suppliers")</li>
+                                <li>@Html.ActionLink("Importers", "importers", "suppliers")</li>
+                                <li>@Html.ActionLink("All", "", "suppliers")</li>
+                                <li>@Html.ActionLink("Add", "add", "suppliers")</li>
                             </ul>
                         </li>
                         <li>
