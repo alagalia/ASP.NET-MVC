@@ -1,0 +1,14 @@
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\bin\Debug\EventsApp.Models.dll
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\bin\Debug\EventsApp.Models.pdb
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\obj\Debug\EventsApp.Models.csprojResolveAssemblyReference.cache
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\obj\Debug\EventsApp.Models.dll
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\obj\Debug\EventsApp.Models.pdb
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\bin\Debug\EventsApp.Models.dll.config
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\bin\Debug\EntityFramework.dll
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\bin\Debug\EntityFramework.SqlServer.dll
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\bin\Debug\EntityFramework.xml
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\bin\Debug\EntityFramework.SqlServer.xml
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\SOFTUNI-C#\ASP.NET\EventsApp\EventsApp\EventsApp.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
