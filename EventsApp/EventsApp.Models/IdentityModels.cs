@@ -27,6 +27,7 @@ namespace EventsApp.Models
         }
 
         public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
 
         public static ApplicationDbContext Create()
         {

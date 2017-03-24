@@ -8,10 +8,9 @@ namespace EventsApp.Models.EntityModels
 
         public string  Title { get; set; }
 
-        public int UserID { get; set; }
-
-        [ForeignKey("UserID")]
-
         public virtual ApplicationUser User { get; set; }
+
+        public virtual Category  Category { get; set; }
+
     }
 }
