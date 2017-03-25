@@ -5,10 +5,12 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using EventsApp.Models;
+using EventsApp.Models.EntityModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using EventsApp.Models;
+using EventsApp.Models.ViewModels.Account;
 
 namespace EventsApp.Controllers
 {

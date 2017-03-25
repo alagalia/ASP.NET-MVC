@@ -15,7 +15,7 @@ namespace EventsApp.Models.EntityModels
 
         public string ImageUrl { get; set; }
 
-        //[StringLength(11)]
+        [StringLength(11)]
         public string YouTubeUrl { get; set; }
 
         public virtual ApplicationUser Owner { get; set; }

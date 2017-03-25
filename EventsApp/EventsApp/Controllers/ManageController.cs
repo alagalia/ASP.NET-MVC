@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EventsApp.Models;
+using EventsApp.Models.ViewModels.Manage;
 
 namespace EventsApp.Controllers
 {
@@ -72,6 +73,7 @@ namespace EventsApp.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+            //return System.Web.UI.WebControls.View(model); //todo:REDO
             return View(model);
         }
 
