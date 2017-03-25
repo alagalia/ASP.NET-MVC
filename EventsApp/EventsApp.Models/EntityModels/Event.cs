@@ -13,7 +13,7 @@ namespace EventsApp.Models.EntityModels
 
         public DateTime StartDateTime { get; set; }
 
-        public byte[] Image { get; set; }
+        public string ImageUrl { get; set; }
 
         //[StringLength(11)]
         public string YouTubeUrl { get; set; }
