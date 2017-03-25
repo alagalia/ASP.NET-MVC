@@ -32,7 +32,8 @@ namespace EventsApp
                       "~/Content/responsive-main.min.css",
                       "~/Content/style.css",
                       "~/Content/tb-styles.min.css",
-                      "~/Content/bigg-likes.css"));
+                      "~/Content/bigg-likes.css"
+                      ));
         }
     }
 }

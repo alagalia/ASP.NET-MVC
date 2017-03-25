@@ -242,6 +242,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_EventPartial.cshtml" />
+    <Content Include="Views\Shared\_CategoriesAction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -255,6 +257,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EventApp.Services\EventApp.Services.csproj">
+      <Project>{167E8300-E471-4870-8CE1-03C6038B7C6C}</Project>
+      <Name>EventApp.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EventsApp.Models\EventsApp.Models.csproj">
       <Project>{1E82E8DA-0620-4894-950B-2E1967F988AF}</Project>
       <Name>EventsApp.Models</Name>
