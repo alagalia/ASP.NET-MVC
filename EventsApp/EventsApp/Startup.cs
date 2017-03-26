@@ -1,7 +1,8 @@
-﻿using Microsoft.Owin;
+﻿using EventsApp;
+using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(EventsApp.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 namespace EventsApp
 {
     public partial class Startup

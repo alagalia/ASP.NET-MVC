@@ -1,13 +1,11 @@
 ﻿using System;
 using EventsApp.Data;
+using EventsApp.Models.EntityModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using EventsApp.Models;
-using EventsApp.Models.EntityModels;
 
 namespace EventsApp
 {
