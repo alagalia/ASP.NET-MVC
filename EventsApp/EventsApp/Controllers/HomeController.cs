@@ -1,12 +1,23 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
+using EventApp.Services;
+using EventsApp.Models.ViewModels.Event;
 
 namespace EventsApp.Controllers
 {
     public class HomeController : Controller
     {
+        private HomeService service;
+
+        public HomeController()
+        {
+            this.service = new HomeService();
+        }
+
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<EventBriefVm> vms = this.service.Get6RecentlyEventsBriefVms();
+            return View(vms);
         }
 
         public ActionResult About()

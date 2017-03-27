@@ -205,6 +205,7 @@
     <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\All.cshtml" />
+    <Content Include="Views\Events\Categories.cshtml" />
     <None Include="Views\Home\Events.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -240,9 +241,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_EventPartial.cshtml" />
+    <Content Include="Views\Shared\_EventAllPartial.cshtml" />
     <Content Include="Views\Shared\_CategoriesAction.cshtml" />
     <Content Include="Views\Shared\Unauthorized.cshtml" />
+    <Content Include="Views\Shared\_EventBriefPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
