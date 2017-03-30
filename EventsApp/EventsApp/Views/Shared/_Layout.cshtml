@@ -24,6 +24,10 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Events", "All", "Events")</li>
                     <li>@Html.ActionLink("Add event", "Create", "Events")</li>
+                    @if (Roles.IsUserInRole("Promoter"))
+                    {
+                        <li>@Html.ActionLink("My event", "MyEvent", "Events")</li>
+                    }
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>

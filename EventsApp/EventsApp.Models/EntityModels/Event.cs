@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EventsApp.Models.EntityModels
 {
     public class Event
     {
+        public Event()
+        {
+            this.Visitors = new HashSet<Visitor>();
+        }
         public int Id { get; set; }
 
         public string  Title { get; set; }
@@ -18,9 +23,11 @@ namespace EventsApp.Models.EntityModels
         [StringLength(11)]
         public string YouTubeUrl { get; set; }
 
-        public virtual ApplicationUser Owner { get; set; }
+        public virtual Promoter Owner { get; set; }
 
         public virtual Category  Category { get; set; }
+
+        public virtual ICollection<Visitor> Visitors { get; set; }
 
     }
 }

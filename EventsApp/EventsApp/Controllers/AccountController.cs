@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using EventApp.Services;
+using EventsApp.Models.BindingModels;
 using EventsApp.Models.EntityModels;
 using EventsApp.Models.ViewModels.Account;
 using Microsoft.AspNet.Identity;
@@ -10,14 +12,16 @@ using Microsoft.Owin.Security;
 
 namespace EventsApp.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        private AccountService service;
+
         public AccountController()
         {
+            this.service = new AccountService();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -55,8 +59,16 @@ namespace EventsApp.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.ReturnUrl = returnUrl;
+                return View();
+            }
+            
         }
 
         //
@@ -137,7 +149,14 @@ namespace EventsApp.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         //
@@ -153,17 +172,17 @@ namespace EventsApp.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    if (model.Editor)
+                    if (model.Promoter)
                     {
-                        this.UserManager.AddToRole(user.Id, "Editor");
+                        this.UserManager.AddToRole(user.Id, "Promoter");
+                        this.service.AddPromoter(user);
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        return RedirectToAction("AddInfo", "Account");
                     }
-                    else
-                    {
-                        this.UserManager.AddToRole(user.Id, "Visitor");
+                    this.UserManager.AddToRole(user.Id, "Promoter");
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    }
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -177,6 +196,28 @@ namespace EventsApp.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+
+        public ActionResult AddInfo()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/AddInfo
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddInfo(AddInfoAccountBm bind)
+        {
+            if (ModelState.IsValid)
+            {
+                string currentUserId = User.Identity.GetUserId();
+                this.service.AddInfoToPromoter(bind, currentUserId);
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(bind);
         }
 
         //
@@ -488,5 +529,7 @@ namespace EventsApp.Controllers
             }
         }
         #endregion
+
+        
     }
 }
