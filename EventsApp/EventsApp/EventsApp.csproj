@@ -176,6 +176,8 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PromotersController.cs" />
+    <Compile Include="CustomHelpers\ImageHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -250,6 +252,12 @@
     <Content Include="Views\Shared\_CategoriesAction.cshtml" />
     <Content Include="Views\Shared\Unauthorized.cshtml" />
     <Content Include="Views\Shared\_EventBriefPartial.cshtml" />
+    <Content Include="Views\Promoters\Create.cshtml" />
+    <Content Include="Views\Promoters\Delete.cshtml" />
+    <Content Include="Views\Promoters\Details.cshtml" />
+    <Content Include="Views\Promoters\Edit.cshtml" />
+    <Content Include="Views\Promoters\Index.cshtml" />
+    <Content Include="Views\Shared\_DisplayEventBriefVmForPromoterProfile.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

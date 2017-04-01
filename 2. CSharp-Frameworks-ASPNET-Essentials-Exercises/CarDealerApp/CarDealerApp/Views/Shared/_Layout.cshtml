@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Car dealer APP</title>
+    <title>@ViewBag.Title  Car dealer APP</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -20,9 +20,9 @@
                 @Html.ActionLink("Car dealer APP", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (this.Request.Cookies.Get("sessionId") != null && AuthenticationManager.IsAuthenticated(this.Request.Cookies.Get("sessionId").Value))
-                    {
+                @if (this.Request.Cookies.Get("sessionId") != null && AuthenticationManager.IsAuthenticated(this.Request.Cookies.Get("sessionId").Value))
+                {
+                    <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a class="dropdown-toggle" type="button" data-toggle="dropdown">
                                 Customers
@@ -30,10 +30,10 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    @Html.ActionLink("Ascending", "all/ascending", "Customers")
+                                    @Html.ActionLink("Ascending", "all", "Customers", new { order = "ascending" }, null)
                                 </li>
                                 <li>
-                                    @Html.ActionLink("Descending", "all/descending", "Customers")
+                                    @Html.ActionLink("Descending", "all", "Customers", new { order = "descending" }, null)
                                 </li>
                             </ul>
                         </li>
@@ -65,27 +65,34 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Local", "local", "suppliers")</li>
+                                <li>@Html.ActionLink("Local", "All", "Suppliers", new { type = "local" }, null)</li>
                                 <li>@Html.ActionLink("Importers", "importers", "suppliers")</li>
                                 <li>@Html.ActionLink("All", "", "suppliers")</li>
                                 <li>@Html.ActionLink("Add", "add", "suppliers")</li>
                             </ul>
                         </li>
                         <li>
-                            <a href="/logs/all">Logs</a>
+                            @Html.ActionLink("Logs", "All", "Logs")
                         </li>
+                        
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@ViewBag.Username</li>
                         <li>
                             <form method="post" action="/users/logout/">
-                                <input type="submit" value="Logout" class="form-control btn btn-left" />
+                                <input type="submit" value="Logout" class="form-control" />
                             </form>
                         </li>
-                    }
-                    else
-                    {
-                        <li><a href="/users/Login">Login</a></li>
-                        <li><a href="/users/Register">Register</a></li>
-                    }
-                </ul>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav">
+
+                        @Html.ActionLink("Login", "Login", "Users")
+                        @Html.ActionLink("Register", "Register", "Users")
+                    </ul>
+                }
 
             </div>
         </div>
