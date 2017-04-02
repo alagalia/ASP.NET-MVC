@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindingModels\AddEventBm.cs" />
+    <Compile Include="BindingModels\JoinInEventBm.cs" />
     <Compile Include="EntityModels\ApplicationUser.cs" />
     <Compile Include="EntityModels\Category.cs" />
     <Compile Include="EntityModels\Event.cs" />

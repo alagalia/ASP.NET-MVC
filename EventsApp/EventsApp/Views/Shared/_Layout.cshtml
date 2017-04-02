@@ -23,9 +23,12 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Events", "All", "Events")</li>
-                    <li>@Html.ActionLink("Add event", "Create", "Events")</li>
-                    <li>@Html.ActionLink("My event", "MyEvent", "Events")</li>
-                    <li>@Html.ActionLink("Edit profile", "MyEvent", "Events")</li>
+
+                    @if (User.IsInRole("Administrator") || User.IsInRole("Promoter"))
+                    {
+                        <li>@Html.ActionLink("Add event", "Create", "Events")</li>
+                        <li>@Html.ActionLink("My event", "MyEvent", "Events")</li>
+                    }
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>

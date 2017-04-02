@@ -51,5 +51,29 @@ namespace EventApp.Services
             EventVm eventVm = Mapper.Map<Event, EventVm>(ev);
             return eventVm;
         }
+
+        public void AddEventToVisitor(ApplicationUser currentUser, int? eventId)
+        {
+            Visitor currentVisitor = this.Context.Visitors.FirstOrDefault(visitor => visitor.User.Id == currentUser.Id);
+            Event ev = this.Context.Events.Find(eventId); 
+            currentVisitor.Events.Add(ev);
+            Context.SaveChanges();
+        }
+
+        public IEnumerable<EventAllVm> GetEventAllVms()
+        {
+            IEnumerable<EventAllVm> vms = this.Context.Events.Select(@event => new EventAllVm()
+            {
+                CategoryName = @event.Category.Name,
+                Description = @event.Description,
+                Id = @event.Id,
+                ImageUrl = @event.ImageUrl,
+                OwnerId = @event.Owner.Id,
+                StartDateTime = @event.StartDateTime,
+                Title = @event.Title,
+                YouTubeUrl = @event.YouTubeUrl
+            });
+            return vms;
+        }
     }
 }
