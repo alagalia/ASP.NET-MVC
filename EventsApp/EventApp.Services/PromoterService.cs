@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using EventsApp.Models.BindingModels;
 using EventsApp.Models.EntityModels;
 using EventsApp.Models.ViewModels.Event;
 using EventsApp.Models.ViewModels.Promoter;
@@ -35,6 +36,29 @@ namespace EventApp.Services
                 Info = promoterInfoVm
             };
             return vm;
+        }
+
+        public EditInfoPromoterVm GetEditUserPtofileVm(string currentUserId)
+        {
+            Promoter promoter = this.Context.Promoters.FirstOrDefault(p => p.User.Id == currentUserId);
+            EditInfoPromoterVm vm = new EditInfoPromoterVm()
+            {
+                Id = promoter.Id,
+                Description = promoter.Info.Description,
+                Contacts = promoter.Info.Contacts,
+                Name = promoter.Info.Name
+            };
+            return vm;
+        }
+
+        public void EditInfoPromoter(EditInfoPromoterBm bm)
+        {
+            Promoter promoter = this.Context.Promoters.FirstOrDefault(p => p.Id == bm.Id);
+            if (promoter == null) return;
+            promoter.Info.Contacts = bm.Contacts;
+            promoter.Info.Name = bm.Name;
+            promoter.Info.Description = bm.Description;
+            this.Context.SaveChanges();
         }
     }
 }

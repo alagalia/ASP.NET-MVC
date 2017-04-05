@@ -3,19 +3,26 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
-        </li>
+        <ul class="nav navbar-nav navbar-right">
 
-@if (User.IsInRole("Administrator")|| User.IsInRole("Promoter"))
-{
-        <li>@Html.ActionLink("Edit profile", "MyEvent", "Events")</li>
-}
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+            @if (User.IsInRole("Administrator") || User.IsInRole("Promoter"))
+            {
+                <li>@Html.ActionLink("Add event", "Create", "Events")</li>
+                <li>@Html.ActionLink("My events", "MyEvents", "Events")</li>
+                <li>@Html.ActionLink("Edit profile", "EditProfile", "Promoters")</li>
+            }
+            @if (User.IsInRole("Visitor"))
+            {
+                <li>@Html.ActionLink("My enrolled events", "MyEvents", "Visitors")</li>
+            }
+
+            <li>
+                @Html.ActionLink("I am " + User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
 }
 else

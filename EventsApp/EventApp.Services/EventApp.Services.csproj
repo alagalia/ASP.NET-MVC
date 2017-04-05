@@ -92,6 +92,7 @@
     <Compile Include="PromoterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.cs" />
+    <Compile Include="VisitorService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EventsApp.Data\EventsApp.Data.csproj">

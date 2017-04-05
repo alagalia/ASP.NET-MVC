@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindingModels\AddEventBm.cs" />
+    <Compile Include="BindingModels\EditInfoPromoterBm.cs" />
     <Compile Include="BindingModels\JoinInEventBm.cs" />
     <Compile Include="EntityModels\ApplicationUser.cs" />
     <Compile Include="EntityModels\Category.cs" />
@@ -123,8 +124,10 @@
     <Compile Include="ViewModels\Manage\ManageLoginsViewModel.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Promoter\EditInfoPromoterVm.cs" />
     <Compile Include="ViewModels\Promoter\PromoterAllInfoVm.cs" />
     <Compile Include="ViewModels\Promoter\PromoterInfoVm.cs" />
+    <Compile Include="ViewModels\Visitor\MyEventVisitorVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -27,6 +27,6 @@ namespace EventsApp.Data
             return new EventsAppContext();
         }
 
-        public System.Data.Entity.DbSet<EventsApp.Models.ViewModels.Event.EventBriefVm> EventBriefVms { get; set; }
+        public System.Data.Entity.DbSet<EventsApp.Models.ViewModels.Promoter.EditInfoPromoterVm> EditInfoPromoterVms { get; set; }
     }
 }

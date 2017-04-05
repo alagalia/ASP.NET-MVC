@@ -171,9 +171,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Event\EventAreaRegistration.cs" />
+    <Compile Include="Areas\Visitor\Controllers\VisitorsController.cs" />
+    <Compile Include="Areas\Visitor\VisitorAreaRegistration.cs" />
     <Compile Include="Attributies\MyAuthorizeAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Areas\Event\Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PromotersController.cs" />
@@ -194,6 +197,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Event\Views\web.config" />
+    <Content Include="Areas\Visitor\Views\web.config" />
+    <Content Include="Areas\Visitor\Views\Index.cshtml" />
+    <Content Include="Areas\Visitor\Views\MyEvents.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -206,12 +213,12 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Events\Create.cshtml" />
-    <Content Include="Views\Events\Delete.cshtml" />
-    <Content Include="Views\Events\Details.cshtml" />
-    <Content Include="Views\Events\Edit.cshtml" />
-    <Content Include="Views\Events\All.cshtml" />
-    <Content Include="Views\Events\Categories.cshtml" />
+    <Content Include="Areas\Event\Views\Create.cshtml" />
+    <Content Include="Areas\Event\Views\Delete.cshtml" />
+    <Content Include="Areas\Event\Views\Details.cshtml" />
+    <Content Include="Areas\Event\Views\Edit.cshtml" />
+    <Content Include="Areas\Event\Views\All.cshtml" />
+    <Content Include="Areas\Event\Views\Categories.cshtml" />
     <Content Include="Views\Account\AddInfo.cshtml" />
     <None Include="Views\Home\Events.cshtml" />
     <Content Include="Web.config" />
@@ -255,11 +262,17 @@
     <Content Include="Views\Promoters\Create.cshtml" />
     <Content Include="Views\Promoters\Delete.cshtml" />
     <Content Include="Views\Promoters\Details.cshtml" />
-    <Content Include="Views\Promoters\Edit.cshtml" />
-    <Content Include="Views\Promoters\Index.cshtml" />
+    <Content Include="Views\Promoters\All.cshtml" />
     <Content Include="Views\Shared\_DisplayEventBriefVmForPromoterProfile.cshtml" />
+    <Content Include="Views\Promoters\EditProfile.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Event\Views\Shared\" />
+    <Folder Include="Areas\Visitor\Models\" />
+    <Folder Include="Areas\Visitor\Views\Shared\" />
+    <Folder Include="Areas\Visitor\Views\Visitors\" />
+    <Folder Include="Views\Events\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using EventApp.Services;
+using EventsApp.Attributies;
 using EventsApp.Models.BindingModels;
 using EventsApp.Models.EntityModels;
 using EventsApp.Models.ViewModels.Account;
@@ -190,6 +191,7 @@ namespace EventsApp.Controllers
         }
 
 
+        [MyAuthorize(Roles = "Promoter")]
         public ActionResult AddInfo()
         {
             return View();
@@ -199,7 +201,7 @@ namespace EventsApp.Controllers
         // POST: /Account/AddInfo
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddInfo(AddInfoAccountBm bind)
+        public ActionResult AddInfo(AddInfoAccountBm bind)
         {
             if (ModelState.IsValid)
             {
