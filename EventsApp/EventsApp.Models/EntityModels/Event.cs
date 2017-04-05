@@ -18,6 +18,8 @@ namespace EventsApp.Models.EntityModels
 
         public DateTime StartDateTime { get; set; }
 
+        public string Location { get; set; }
+
         public string ImageUrl { get; set; }
 
         [StringLength(11)]

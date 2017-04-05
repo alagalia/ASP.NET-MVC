@@ -73,6 +73,7 @@ namespace EventApp.Services
                 {
                     CategoryName = @event.Category.Name,
                     Description = @event.Description,
+                    Location = @event.Location,
                     Id = @event.Id,
                     ImageUrl = @event.ImageUrl,
                     OwnerId = @event.Owner.Id,
