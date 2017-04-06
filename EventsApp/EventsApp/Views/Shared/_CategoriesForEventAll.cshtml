@@ -1,0 +1,8 @@
+﻿@model IEnumerable<EventsApp.Models.EntityModels.Category>
+<div class="list-group">
+
+    @foreach (var category in Model)
+    {
+        @Html.ActionLink(category.Name, "All", "Events", new { categoryName = category.Name},  new {@class = "list-group-item"})
+    } 
+</div>

@@ -1,0 +1,37 @@
+﻿@using EventsApp.CustomHelpers
+@model IEnumerable<EventsApp.Models.ViewModels.Event.EventBriefVm>
+
+@{
+    ViewBag.Title = "_DisplayEventBriefVm";
+}
+
+<h2>Promoter`s events</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+    </tr>
+
+   @foreach (var item in Model) {
+    <tr >
+        <td>
+            @Html.ActionLink(@Html.DisplayFor(modelItem => item.Title).ToString(), "Details", "Events", new { id = item.Id }, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Name)
+        </td>
+    </tr>
+}
+
+</table>

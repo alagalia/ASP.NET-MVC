@@ -1,0 +1,4 @@
+﻿@model IEnumerable<EventsApp.Models.EntityModels.Category>
+@Html.DisplayName("Gategories")
+<br/>
+@Html.DropDownList("CategoryId", new SelectList(Model, "Id", "name", new { @class = "form-control" } ))

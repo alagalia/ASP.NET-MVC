@@ -1,0 +1,65 @@
+﻿@model EventsApp.Models.ViewModels.Event.EventAllVm
+
+@{
+    ViewBag.Title = "_EventAllPartial";
+}
+
+<div class="col-sm-4 col-lg-4 col-md-4">
+    @*<div class="tumbnail">
+            <div>
+                <iframe width="100%" src="https://www.youtube.com/embed/@Model.YouTubeUrl" frameborder="0" allowfullscreen></iframe>
+
+            </div>
+            <div>
+                <a href="#" title="no"><img width="100%" height="100%" src="@Model.ImageUrl" class="alignleft post-image" alt="@Model.Id" /></a>
+            </div>
+
+            <div>
+                @Html.ActionLink(@Html.DisplayFor(model => model.Title).ToString(), "Details", "Events", new { id = Model.Id }, null)
+            </div>
+            
+        </div>*@
+    <div class="thumbnail">
+        <h4 class="pull-right">
+            @Html.ActionLink(@Html.DisplayFor(model => model.Location).ToString(), "Location", "Events", new { id = Model.Location }, null)
+        </h4>
+        <div>
+            <img class="crop alignleft post-image" src="@Model.ImageUrl" alt="@Model.Id" />
+        </div>
+        <h4 class="pull-left">@Model.StartDateTime</h4>
+
+        <div class="caption" style="height: 200px">
+            <h4>
+                @Html.ActionLink(@Html.DisplayFor(model => model.Title).ToString(), "Details", "Events", new { id = Model.Id }, null)
+            </h4>
+            <p>
+                See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.
+            </p>
+            @if (Request.IsAuthenticated && User.IsInRole("Visitor"))
+            {
+                using (Html.BeginForm("All", "Events", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <input name="EventId" type="hidden" value="@Model.Id" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Join in" class="btn btn-info" />
+                    </div>
+                }
+            }
+        </div>
+        <div class="ratings">
+            <p class="pull-right">15 reviews</p>
+            <p>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+            </p>
+        </div>
+    </div>
+</div>

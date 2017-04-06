@@ -1,0 +1,25 @@
+﻿@model EventsApp.Models.ViewModels.Promoter.PromoterAllInfoVm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<h4>@Html.DisplayFor(model => model.Info.Name)</h4>
+<hr />
+
+<table>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Info.Contacts):
+        @Html.DisplayFor(model => model.Info.Contacts)</th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.Info.Description)
+        </td>
+    </tr>
+</table>
+<hr />
+@Html.Action("EventList", "Promoters", new { eventBriefVms = @Model.Events })
+
+

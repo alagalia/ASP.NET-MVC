@@ -1,0 +1,6 @@
+﻿@model IEnumerable<string>
+@Html.DisplayName("Locations")
+<br />
+@Html.DropDownList("LocationName", new SelectList(Model, new { @class = "form-control" }))
+
+

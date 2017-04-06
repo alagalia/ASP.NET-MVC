@@ -1,0 +1,29 @@
+﻿@model EventsApp.Models.ViewModels.Event.EventBriefVm
+
+@{
+    ViewBag.Title = "_EventAllPartial";
+}
+
+<div class="col-lg-4 col-md-4 col-s">
+    <div class="teaser">
+        <div>
+            <h3 class="entry-title text-center">
+                @Html.ActionLink(@Html.DisplayFor(model => model.Title).ToString(), "Details", "Events", new { id = Model.Id }, null)
+            </h3>
+            <br />
+            <div class="entry-content">
+                @Html.DisplayNameFor(@Model => Model.StartDateTime):
+                @Html.DisplayFor(m => m.StartDateTime, "{0:dd/MM/yyyy}")
+            </div>
+            <img class="crop" src="@Model.ImageUrl" class="alignleft post-image" alt="@Model.Id" />
+            <div class="entry-content">
+                @Html.DisplayNameFor(@Model => Model.Category):
+                @Html.ActionLink(@Html.DisplayFor(model => model.Category.Name).ToString(), "Categories", "Events", new { id = Model.Category.Id }, null)
+            </div>
+            <div class="crop entry-content">
+                <p class="truncate" contenteditable="true">Add discription here Bacon ipsum dolor sit amet kielbasa swine pariatur consequat consectetur esse tongue ea biltong. Fatback dolore ullamco labore in spare ribs ad hamburger cupidatat tongue. Nisi frankfurter duis proident, officia ham aliqua.</p>
+            </div>
+            <p >@Html.ActionLink("Details", "Details", "Events", new { id = Model.Id, }, new { @class = "pull-right" })</p>
+    </div>
+</div>
+</div>

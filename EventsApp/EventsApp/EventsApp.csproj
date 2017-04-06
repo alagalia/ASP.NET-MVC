@@ -256,7 +256,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_EventAllPartial.cshtml" />
-    <Content Include="Views\Shared\_CategoriesAction.cshtml" />
+    <Content Include="Views\Shared\_CategoriesListForCreateEvent.cshtml" />
     <Content Include="Views\Shared\Unauthorized.cshtml" />
     <Content Include="Views\Shared\_EventBriefPartial.cshtml" />
     <Content Include="Views\Promoters\Create.cshtml" />
@@ -265,6 +265,8 @@
     <Content Include="Views\Promoters\All.cshtml" />
     <Content Include="Views\Shared\_DisplayEventBriefVmForPromoterProfile.cshtml" />
     <Content Include="Views\Promoters\EditProfile.cshtml" />
+    <Content Include="Views\Shared\_CategoriesForEventAll.cshtml" />
+    <Content Include="Views\Shared\_LocationsListForEventAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Event\Views\Shared\" />

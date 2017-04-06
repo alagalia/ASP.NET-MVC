@@ -1,0 +1,44 @@
+﻿@model IEnumerable<EventsApp.Models.ViewModels.Visitor.MyEventVisitorVm>
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{
+    ViewBag.Title = "My enrolled events";
+}
+<div style="height: 30px"></div>
+<h1>My enrolled events</h1>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.ActionLink("Remove from my list", "Delete", new {id = item.Id})
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Back to All events", "All", "Events")
+
+

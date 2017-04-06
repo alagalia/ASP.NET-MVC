@@ -1,0 +1,27 @@
+﻿@model IEnumerable<EventsApp.Models.ViewModels.Event.EventAllVm>
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{
+    ViewBag.Title = "All events";
+}
+<div style="height: 30px"></div>
+
+<div class="container body-content">
+    <h1>All events</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Categories</p>
+            <hr />
+            @Html.Action("CategoriesListForEventAll")
+
+            <p class="lead">Search by Locations</p>
+            <hr />
+            @Html.Action("LocationsListForEventAll")
+        </div>
+        <div class="col-md-9">
+            @foreach (var eventItem in Model)
+            {
+                @Html.Partial("~/Views/Shared/_EventAllPartial.cshtml", eventItem)
+            }
+        </div>
+    </div>
+</div>

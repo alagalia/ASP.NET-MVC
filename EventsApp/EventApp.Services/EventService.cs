@@ -36,6 +36,7 @@ namespace EventApp.Services
                 StartDateTime = DateTime.Now,
                 Owner = promoter,
                 Category = catg,
+                Location = bind.Location,
                 ImageUrl = bind.Image,
                 YouTubeUrl = bind.YouTubeUrl
             };
@@ -84,7 +85,30 @@ namespace EventApp.Services
             return vms;
         }
 
-        public IEnumerable<EventAllVm> GetEventAllVms(string currentUserId)
+        public IEnumerable<EventAllVm> GetEventAllVms(string categoryName)
+        {
+            IEnumerable<Event> categories = this.Context.Events;
+            if (categoryName != null)
+            {
+                categories = categories.ToList().Where(e => e.Category.Name == categoryName);
+            }
+            IEnumerable<EventAllVm> vms =
+                categories.Select(@event => new EventAllVm()
+                {
+                    CategoryName = @event.Category.Name,
+                    Description = @event.Description,
+                    Location = @event.Location,
+                    Id = @event.Id,
+                    ImageUrl = @event.ImageUrl,
+                    OwnerId = @event.Owner.Id,
+                    StartDateTime = @event.StartDateTime,
+                    Title = @event.Title,
+                    YouTubeUrl = @event.YouTubeUrl
+                });
+            return vms;
+        }
+
+        public IEnumerable<EventAllVm> GetMyEventsVms(string currentUserId)
         {
             ApplicationUser currentUser = this.Context.Users.FirstOrDefault(x => x.Id == currentUserId);
 
@@ -98,9 +122,16 @@ namespace EventApp.Services
                     OwnerId = @event.Owner.Id,
                     StartDateTime = @event.StartDateTime,
                     Title = @event.Title,
+                    Location = @event.Location,
                     YouTubeUrl = @event.YouTubeUrl
                 });
             return vms;
+        }
+
+        public IEnumerable<string> GetLocations()
+        {
+            IEnumerable<string> locations = this.Context.Events.ToList().Select(e=>e.Location);
+            return locations;
         }
     }
 }
