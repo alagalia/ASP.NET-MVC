@@ -133,5 +133,23 @@ namespace EventApp.Services
             IEnumerable<string> locations = this.Context.Events.ToList().Select(e=>e.Location);
             return locations;
         }
+
+        public IEnumerable<EventAllVm> GetEventByLocationVms(string location)
+        {
+            IEnumerable<EventAllVm> vms =
+                this.Context.Events.Where(e => e.Location == location).Select(@event => new EventAllVm()
+                {
+                    CategoryName = @event.Category.Name,
+                    Description = @event.Description,
+                    Id = @event.Id,
+                    ImageUrl = @event.ImageUrl,
+                    OwnerId = @event.Owner.Id,
+                    StartDateTime = @event.StartDateTime,
+                    Title = @event.Title,
+                    Location = @event.Location,
+                    YouTubeUrl = @event.YouTubeUrl
+                });
+            return vms;
+        }
     }
 }

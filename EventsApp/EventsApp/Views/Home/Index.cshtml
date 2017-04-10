@@ -5,24 +5,31 @@
 <body class="home blog header-full-width full-width-content">
     <div class="container">
 
-        <div id="content-sidebar-wrap">
-
-            <div id="content" class="hfeed">
-                <div class="post-5 post type-post status-publish format-standard hentry category-featured category-parent-category-i entry feature feature">
-                    <a href="#" title="Welcome to Event portal"><img width="660" height="370" src="http://kingofwallpapers.com/event/event-008.jpg" class="alignleft" alt="Event portal"/></a>
-
-                    <h2 class="entry-title"><a href="#" title="Welcome to Bigg" rel="bookmark">All EVENTS <br/>in ONE PLACE</a>
-                    </h2>
-
-                    <div class="entry-content ">
-                        <p>Платформата за събития "ALL in ONE"  предоставя възможност да споделяте, търсите или заявявате участие в най-актуалните събития в България! </p>
-                        @Html.ActionLink("More about us", "About", "Home", null, new { @class = "bigg-read-more" })
-                    </div><!-- end .entry-content -->
-                </div><!-- end .postclass -->
-            </div>
-            <h2 class="title">COMMING TOP 3 EVENTs</h2>
-        </div>
         <div>
+            <div id="content-sidebar-wrap">
+
+                <div id="content" class="hfeed">
+                    <div class="post-5 post type-post status-publish format-standard hentry category-featured category-parent-category-i entry feature feature">
+                        <img width="660" height="370" src="http://kingofwallpapers.com/event/event-008.jpg" class="alignleft" alt="Event portal" style="border: 6px solid orange;" />
+
+                        <h2 class="entry-title">
+                            <a href="/events/all">All EVENTS <br />in ONE PLACE</a>
+                        </h2>
+
+                        <div class="entry-content ">
+                            <p>Платформата за събития "ALL in ONE" предоставя възможност да споделяте, търсите или заявявате участие в най-актуалните събития в България! </p>
+                            @Html.ActionLink("More about us", "About", "Home", null, new { @class = "bigg-read-more" })
+                        </div><!-- end .entry-content -->
+                    </div><!-- end .postclass -->
+                </div>
+
+            </div>
+        </div>
+        <br/>
+
+        <div>
+            <div class="background-blue"><h2 class="title-orange">COMMING Up TOP 3 EVENTs</h2></div>
+
             @foreach (var eventItem in Model)
             {
 

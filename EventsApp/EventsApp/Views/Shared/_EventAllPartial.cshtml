@@ -17,24 +17,30 @@
             <div>
                 @Html.ActionLink(@Html.DisplayFor(model => model.Title).ToString(), "Details", "Events", new { id = Model.Id }, null)
             </div>
-            
+
         </div>*@
     <div class="thumbnail">
-        <h4 class="pull-right">
-            @Html.ActionLink(@Html.DisplayFor(model => model.Location).ToString(), "Location", "Events", new { id = Model.Location }, null)
-        </h4>
+        <div>
+            <h4 class="pull-right">
+                @Html.ActionLink(@Html.DisplayFor(model => model.Location).ToString(), "Location", "Events", new { id = Model.Location }, null)
+            </h4>
+        </div>
         <div>
             <img class="crop alignleft post-image" src="@Model.ImageUrl" alt="@Model.Id" />
         </div>
-        <h4 class="pull-left">@Model.StartDateTime</h4>
-
-        <div class="caption" style="height: 200px">
-            <h4>
-                @Html.ActionLink(@Html.DisplayFor(model => model.Title).ToString(), "Details", "Events", new { id = Model.Id }, null)
-            </h4>
-            <p>
-                See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.
-            </p>
+        <br />
+        <h6>@Model.StartDateTime</h6>
+        <div class="caption">
+            <div class="title">
+                <h4>
+                    @Html.ActionLink(@Html.DisplayFor(model => model.Title).ToString(), "Details", "Events", new { id = Model.Id }, null)
+                </h4>
+            </div>
+            <div class="truncate">
+                <p>
+                    @Html.DisplayFor(model=>model.Description)
+                </p>
+            </div>
             @if (Request.IsAuthenticated && User.IsInRole("Visitor"))
             {
                 using (Html.BeginForm("All", "Events", FormMethod.Post))

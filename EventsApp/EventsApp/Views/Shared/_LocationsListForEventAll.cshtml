@@ -1,6 +1,23 @@
 ﻿@model IEnumerable<string>
 @Html.DisplayName("Locations")
-<br />
-@Html.DropDownList("LocationName", new SelectList(Model, new { @class = "form-control" }))
+<br/>
 
 
+@using (Html.BeginForm("Location", "Events", FormMethod.Get))
+{
+    @Html.DropDownList("name", new SelectList(Model, new {@class = "form-control"}), new {name = Model, id = "LocationUrl"})
+    <div class="form-group">
+        <input id="locBtn" type="submit" value="Search" class="btn btn-info" />
+    </div>
+}
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    $(function () {
+        $('#locBtn').onclick(function () {
+            var url = $(this).val();
+            //if (url != null && url !== '') {
+                window.location.href = "Location/" + url;
+            //}
+        });
+    });
+</script>

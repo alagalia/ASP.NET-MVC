@@ -125,8 +125,15 @@ namespace EventsApp.Areas.Event.Controllers
             return View("~/Areas/Event/Views/Details.cshtml", @event);
         }
 
-       
 
+        //// GET: Events/{location}
+        [HttpGet]
+        [Route("Location/{name}")]
+        public ActionResult Location(string name)
+        {
+            IEnumerable<EventAllVm> vm = this.service.GetEventByLocationVms(name);
+            return View("~/Areas/Event/Views/All.cshtml", vm);
+        }
 
         #region TEMP
         //// GET: Events/Edit/5
