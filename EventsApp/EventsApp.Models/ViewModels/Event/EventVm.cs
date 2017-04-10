@@ -1,5 +1,6 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using EventsApp.Models.EntityModels;
 
 namespace EventsApp.Models.ViewModels.Event
 {
@@ -15,11 +16,13 @@ namespace EventsApp.Models.ViewModels.Event
 
         public string ImageUrl { get; set; }
 
-        [StringLength(11)]
+        public string Location { get; set; }
+
         public string YouTubeUrl { get; set; }
 
         public string UserId { get; set; }
 
         public string Category { get; set; }
+
     }
 }

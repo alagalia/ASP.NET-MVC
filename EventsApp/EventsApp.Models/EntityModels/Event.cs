@@ -31,5 +31,7 @@ namespace EventsApp.Models.EntityModels
 
         public virtual ICollection<Visitor> Visitors { get; set; }
 
+        public virtual ICollection<Comment> Comments { get; set; }
+
     }
 }

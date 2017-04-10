@@ -52,6 +52,9 @@ namespace EventsApp.Areas.Event.Controllers
         [Route("MyEvents")]
         public ActionResult MyEvents()
         {
+            //string path = HttpContext.Request.Url.LocalPath;
+            //TODO list events only for usre and selected by category
+
             string currentUserId = User.Identity.GetUserId();
             IEnumerable<EventAllVm> vms = this.service.GetMyEventsVms(currentUserId);
             return View("~/Areas/Event/Views/All.cshtml", vms);
@@ -90,6 +93,15 @@ namespace EventsApp.Areas.Event.Controllers
             IEnumerable<string> locations = this.service.GetLocations();
             return PartialView("_LocationsListForEventAll", locations);
         }
+
+        //@Html.Action
+        [ChildActionOnly]
+        public ActionResult CommentListForDetailPage(int eventId)
+        {
+            IEnumerable<CommentVm> comments = this.service.GetCommentVms(eventId);
+            return PartialView("~/Areas/Event/Views/Shared/_Comments.cshtml", comments);
+        }
+
 
 
         // POST: Events/Create

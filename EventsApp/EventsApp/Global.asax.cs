@@ -16,9 +16,12 @@ namespace EventsApp
         {
             Mapper.Initialize(expression =>
             {
+                expression.CreateMap<Comment, CommentVm>();
+
                 expression.CreateMap<Event, EventVm>()
                 .ForMember(dest=>dest.UserId, opt => opt.MapFrom(src=>src.Owner.Id))
                 .ForMember(dest =>dest.Category, opt=>opt.MapFrom(src=>src.Category.Id));
+
 
                 expression.CreateMap<IEnumerable<Event>, IEnumerable<EventBriefVm>>();
                 expression.CreateMap<PromoterInfo, PromoterInfoVm>();

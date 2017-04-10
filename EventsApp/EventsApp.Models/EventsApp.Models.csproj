@@ -98,6 +98,7 @@
     <Compile Include="BindingModels\JoinInEventBm.cs" />
     <Compile Include="EntityModels\ApplicationUser.cs" />
     <Compile Include="EntityModels\Category.cs" />
+    <Compile Include="EntityModels\Comment.cs" />
     <Compile Include="EntityModels\Event.cs" />
     <Compile Include="EntityModels\Promoter.cs" />
     <Compile Include="EntityModels\PromoterInfo.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Event\CommentVm.cs" />
     <Compile Include="ViewModels\Event\EventAllVm.cs" />
     <Compile Include="ViewModels\Event\EventBriefVm.cs" />
     <Compile Include="ViewModels\Event\EventVm.cs" />

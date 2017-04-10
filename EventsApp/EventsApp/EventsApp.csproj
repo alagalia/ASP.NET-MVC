@@ -201,6 +201,7 @@
     <Content Include="Areas\Visitor\Views\web.config" />
     <Content Include="Areas\Visitor\Views\Index.cshtml" />
     <Content Include="Areas\Visitor\Views\MyEvents.cshtml" />
+    <Content Include="Areas\Event\Views\Shared\_Comments.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -269,7 +270,6 @@
     <Content Include="Views\Shared\_LocationsListForEventAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Event\Views\Shared\" />
     <Folder Include="Areas\Visitor\Models\" />
     <Folder Include="Areas\Visitor\Views\Shared\" />
     <Folder Include="Areas\Visitor\Views\Visitors\" />

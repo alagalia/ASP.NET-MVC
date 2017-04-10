@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace EventApp.Services
         public void CreateEvent(AddEventBm bind, string userId)
         {
             Promoter promoter = this.Context.Promoters.FirstOrDefault(p => p.User.Id == userId);
-            if(promoter == null)
+            if (promoter == null)
             {
                 promoter = new Promoter()
                 {
@@ -130,7 +131,8 @@ namespace EventApp.Services
 
         public IEnumerable<string> GetLocations()
         {
-            IEnumerable<string> locations = this.Context.Events.ToList().Select(e=>e.Location);
+            IEnumerable<string> locations = this.Context.Events.ToList().Select(e => e.Location);
+            locations = new HashSet<string>(locations);
             return locations;
         }
 
@@ -149,6 +151,14 @@ namespace EventApp.Services
                     Location = @event.Location,
                     YouTubeUrl = @event.YouTubeUrl
                 });
+            return vms;
+        }
+
+
+        public IEnumerable<CommentVm> GetCommentVms(int eventId)
+        {
+            IEnumerable<Comment> comments = this.Context.Events.Find(eventId).Comments;
+            IEnumerable<CommentVm> vms = Mapper.Map<IEnumerable<Comment>, IEnumerable<CommentVm>>(comments);
             return vms;
         }
     }

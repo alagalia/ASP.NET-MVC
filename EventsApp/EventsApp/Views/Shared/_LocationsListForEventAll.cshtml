@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<string>
-@Html.DisplayName("Locations")
-<br/>
-
 
 @using (Html.BeginForm("Location", "Events", FormMethod.Get))
 {
-    @Html.DropDownList("name", new SelectList(Model, new {@class = "form-control"}), new {name = Model, id = "LocationUrl"})
-    <div class="form-group">
-        <input id="locBtn" type="submit" value="Search" class="btn btn-info" />
-    </div>
+    @Html.DropDownList("name", new SelectList(Model, new { @class = "form-control" }), new { name = Model, id = "LocationUrl" })
+    <span class="form-group">
+        <input id="locBtn" type="submit" value="Search" class="btn btn-info pull-right"/>
+    </span>
+    <hr/>
+    @Html.ActionLink("Clear filter", "All", null, htmlAttributes: new { @class = "btn btn-info pull-right" })
+
 }
 @Scripts.Render("~/bundles/jquery")
 <script type="text/javascript">
@@ -16,7 +16,7 @@
         $('#locBtn').onclick(function () {
             var url = $(this).val();
             //if (url != null && url !== '') {
-                window.location.href = "Location/" + url;
+            window.location.href = "Location/" + url;
             //}
         });
     });

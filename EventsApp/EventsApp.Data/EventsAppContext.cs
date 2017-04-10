@@ -22,11 +22,15 @@ namespace EventsApp.Data
 
         public virtual DbSet<PromoterInfo> UserInfos { get; set; }
 
+        public virtual DbSet<Comment> Comments { get; set; }
+
         public static EventsAppContext Create()
         {
             return new EventsAppContext();
         }
 
-        public System.Data.Entity.DbSet<EventsApp.Models.ViewModels.Promoter.EditInfoPromoterVm> EditInfoPromoterVms { get; set; }
+        public System.Data.Entity.DbSet<EventsApp.Models.ViewModels.Event.CommentVm> CommentVms { get; set; }
+
+        //public System.Data.Entity.DbSet<EventsApp.Models.ViewModels.Promoter.EditInfoPromoterVm> EditInfoPromoterVms { get; set; }
     }
 }
