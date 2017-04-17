@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
 using EventsApp.Models.BindingModels;
@@ -9,7 +10,7 @@ using EventsApp.Models.ViewModels.Promoter;
 
 namespace EventApp.Services
 {
-    public class PromoterService :Service
+    public class PromoterService : Service
     {
         public PromoterAllInfoVm GetPromoterAllInfoVm(int id)
         {
@@ -53,12 +54,22 @@ namespace EventApp.Services
 
         public void EditInfoPromoter(EditInfoPromoterBm bm)
         {
-            Promoter promoter = this.Context.Promoters.FirstOrDefault(p => p.Id == bm.Id);
-            if (promoter == null) return;
-            promoter.Info.Contacts = bm.Contacts;
-            promoter.Info.Name = bm.Name;
-            promoter.Info.Description = bm.Description;
+            PromoterInfo promoter = new PromoterInfo()
+            {
+                Id = bm.Id,
+                Contacts = bm.Contacts,
+                Name = bm.Name,
+                Description = bm.Description,
+                Promoter = this.Context.Promoters.Find(bm.Id)
+        };
+            Context.Entry(promoter).State = EntityState.Modified;
             this.Context.SaveChanges();
+
+            //if (promoter == null) return;
+            //promoter.Info.Contacts = bm.Contacts;
+            //promoter.Info.Name = bm.Name;
+            //promoter.Info.Description = bm.Description;
+            //this.Context.SaveChanges();
         }
     }
 }

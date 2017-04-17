@@ -10,11 +10,13 @@
 
                 <div id="content" class="hfeed">
                     <div class="post-5 post type-post status-publish format-standard hentry category-featured category-parent-category-i entry feature feature">
-                        <img width="660" height="370" src="http://kingofwallpapers.com/event/event-008.jpg" class="alignleft" alt="Event portal" style="border: 6px solid orange;" />
+                        <img width="660" height="370" src="http://kingofwallpapers.com/event/event-008.jpg" class="alignleft" alt="Event portal" style="border: 3px solid navy;" />
 
-                        <h2 class="entry-title">
-                            <a href="/events/all">All EVENTS <br />in ONE PLACE</a>
-                        </h2>
+                        <div>
+                            <h2 class="entry-title  text-center">
+                                @Html.ActionLink("All EVENTS in ONE PLACE", "all", "Events", new { @class = "text-center" })
+                            </h2>
+                        </div>
 
                         <div class="entry-content ">
                             <p>Платформата за събития "ALL in ONE" предоставя възможност да споделяте, търсите или заявявате участие в най-актуалните събития в България! </p>

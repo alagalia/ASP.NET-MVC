@@ -15,6 +15,6 @@ namespace EventsApp.Models.EntityModels
         public string Contacts { get; set; }
 
         [Required]
-       public virtual Promoter Promoter { get; set; }
+        public virtual Promoter Promoter { get; set; }
     }
 }

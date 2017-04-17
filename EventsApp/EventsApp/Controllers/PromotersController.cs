@@ -72,8 +72,12 @@ namespace EventsApp.Controllers
         [HttpPost]
         public ActionResult EditProfile([Bind] EditInfoPromoterBm bm)
         {
-            this.service.EditInfoPromoter(bm);
-            return RedirectToAction("Details", new { id = bm.Id });
+            if (ModelState.IsValid)
+            {
+                this.service.EditInfoPromoter(bm);
+                return RedirectToAction("Details", new {id = bm.Id});
+            }
+            return RedirectToAction("EditProfile");
         }
 
 

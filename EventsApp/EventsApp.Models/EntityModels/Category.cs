@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EventsApp.Models.EntityModels
 {
@@ -8,8 +10,11 @@ namespace EventsApp.Models.EntityModels
         {
             this.Events = new HashSet<Event>();
         }
+
+        [Key]
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public virtual IEnumerable<Event> Events { get; set; }

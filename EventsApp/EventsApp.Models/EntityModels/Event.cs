@@ -10,16 +10,23 @@ namespace EventsApp.Models.EntityModels
         {
             this.Visitors = new HashSet<Visitor>();
         }
+
+        [Key]
         public int Id { get; set; }
 
+        [Required, MinLength(5)]
         public string  Title { get; set; }
 
+        [Required, MinLength(5)]
         public string Description { get; set; }
 
+        [Required]
         public DateTime StartDateTime { get; set; }
 
+        [Required, MinLength(5)]
         public string Location { get; set; }
 
+        [Required]
         public string ImageUrl { get; set; }
 
         [StringLength(11)]
