@@ -2,13 +2,15 @@
 @{
     ViewBag.Title = "Create";
 }
+@model EventsApp.Models.BindingModels.AddEventBm
+
 <div class="container body-content">
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
         <h4>Add Event</h4>
         <hr />
-        <div class="well bs-component col-md-offset-3 col-md-5">
+        <div class="well bs-component col-md-offset-3 col-md-7">
             <div class="form-horizontal ">
 
                 <fieldset>
@@ -17,42 +19,52 @@
 
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.Label("Title", new { @class = "col-lg-2 control-label" })
-                    <div class="col-lg-10">
-                        <input type="text" name="Title" class="form-control" />
+                    @Html.LabelFor(m => m.Title, new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-9">
+                        @Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m=>m.Title)
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.Label("Image", new { @class = "col-lg-2 control-label" })
-                    <div class="col-lg-10">
-                        @Html.Editor("Image", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(m => m.Image, new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-9">
+                        @Html.EditorFor(m => m.Image, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.Label("Location", new { @class = "col-lg-2 control-label" })
-                    <div class="col-lg-10">
-                        @Html.Editor("Location", new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.LabelFor(m => m.Location, new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-9">
+                        @Html.EditorFor(m => m.Location, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.Label("Event description", new { @class = "col-lg-2 control-label" })
-                    <div class="col-lg-10">
-                        @Html.TextArea("Description", new { rows = 10, style = "width:100%" })
+                    @Html.LabelFor(m => m.Description, new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-9">
+                        @Html.TextAreaFor(m => m.Description, new { rows = 10, style = "width:100%" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.Label("YoutubeUrl", new { @class = "col-lg-2 control-label" })
-                    <div class="col-lg-10">
-                        @Html.Editor("YoutubeUrl", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.LabelFor(m => m.YouTubeUrl, new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-9">
+                        @Html.EditorFor(m => m.YouTubeUrl, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.StartDateTime, new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-9">
+                        @Html.TextBoxFor(m => m.StartDateTime, "yyyy-MM-dd", new { @class = "form-control", @type = "datetime", name = "StartDateTime", id = "StartDateTime" })
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.Action("CategoriesListForCreateEvent")
+                    @Html.Action("CategoriesListForCreateEvent", "Events")
                 </div>
+
+
 
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-info" />
@@ -71,3 +83,5 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+

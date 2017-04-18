@@ -9,7 +9,7 @@ namespace EventsApp.Data
         public EventsAppContext()
             : base("EventsApp", throwIfV1Schema: false)
         {
-            
+
         }
 
         public virtual DbSet<Event> Events { get; set; }
@@ -28,9 +28,6 @@ namespace EventsApp.Data
         {
             return new EventsAppContext();
         }
-
-        public System.Data.Entity.DbSet<EventsApp.Models.ViewModels.Event.CommentVm> CommentVms { get; set; }
-
-        //public System.Data.Entity.DbSet<EventsApp.Models.ViewModels.Promoter.EditInfoPromoterVm> EditInfoPromoterVms { get; set; }
     }
+
 }

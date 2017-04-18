@@ -16,7 +16,8 @@
             <img class="crop alignleft post-image" src="@Model.ImageUrl" alt="@Model.Id" />
         </div>
         <br />
-        <h6>@Model.StartDateTime</h6>
+        @Html.DisplayNameFor(x => x.StartDateTime)
+        @Html.DisplayFor(x => x.StartDateTime)
         <div class="caption">
             <div class="title">
                 <h4>

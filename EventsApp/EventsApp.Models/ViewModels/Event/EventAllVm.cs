@@ -10,6 +10,7 @@ namespace EventsApp.Models.ViewModels.Event
         public string Title { get; set; }
 
         [Display(Name = "Start Date")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime StartDateTime { get; set; }
 
         public string Location { get; set; }
@@ -23,7 +24,7 @@ namespace EventsApp.Models.ViewModels.Event
         [StringLength(11)]
         public string YouTubeUrl { get; set; }
 
-        public int OwnerId { get; set; }
+        public int ComentsCouner { get; set; }
 
     }
 }

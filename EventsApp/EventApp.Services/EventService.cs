@@ -30,18 +30,20 @@ namespace EventApp.Services
             };
 
             Category catg = this.Context.Categories.Find(bind.CategoryId);
-            Event ev = new Event()
-            {
-                Title = bind.Title,
-                Description = bind.Description,
-                StartDateTime = DateTime.Now,
-                Owner = promoter,
-                Category = catg,
-                Location = bind.Location,
-                ImageUrl = bind.Image,
-                YouTubeUrl = bind.YouTubeUrl
-            };
-
+            //Event ev = new Event()
+            //{
+            //    Title = bind.Title,
+            //    Description = bind.Description,
+            //    StartDateTime = DateTime.Now,
+            //    Owner = promoter,
+            //    Category = catg,
+            //    Location = bind.Location,
+            //    ImageUrl = bind.Image,
+            //    YouTubeUrl = bind.YouTubeUrl
+            //};
+            Event ev = Mapper.Map<AddEventBm, Event>(bind);
+            ev.Category = catg;
+            ev.Owner = promoter;
             this.Context.Events.Add(ev);
             this.Context.SaveChanges();
         }
@@ -70,19 +72,7 @@ namespace EventApp.Services
 
         public IEnumerable<EventAllVm> GetEventAllVms()
         {
-            IEnumerable<EventAllVm> vms =
-                this.Context.Events.Select(@event => new EventAllVm()
-                {
-                    CategoryName = @event.Category.Name,
-                    Description = @event.Description,
-                    Location = @event.Location,
-                    Id = @event.Id,
-                    ImageUrl = @event.ImageUrl,
-                    OwnerId = @event.Owner.Id,
-                    StartDateTime = @event.StartDateTime,
-                    Title = @event.Title,
-                    YouTubeUrl = @event.YouTubeUrl
-                });
+            IEnumerable<EventAllVm> vms = Mapper.Map<IEnumerable<Event>, IEnumerable<EventAllVm>>(this.Context.Events);
             return vms;
         }
 
@@ -101,7 +91,6 @@ namespace EventApp.Services
                     Location = @event.Location,
                     Id = @event.Id,
                     ImageUrl = @event.ImageUrl,
-                    OwnerId = @event.Owner.Id,
                     StartDateTime = @event.StartDateTime,
                     Title = @event.Title,
                     YouTubeUrl = @event.YouTubeUrl
@@ -120,7 +109,6 @@ namespace EventApp.Services
                     Description = @event.Description,
                     Id = @event.Id,
                     ImageUrl = @event.ImageUrl,
-                    OwnerId = @event.Owner.Id,
                     StartDateTime = @event.StartDateTime,
                     Title = @event.Title,
                     Location = @event.Location,
@@ -145,7 +133,6 @@ namespace EventApp.Services
                     Description = @event.Description,
                     Id = @event.Id,
                     ImageUrl = @event.ImageUrl,
-                    OwnerId = @event.Owner.Id,
                     StartDateTime = @event.StartDateTime,
                     Title = @event.Title,
                     Location = @event.Location,

@@ -64,12 +64,6 @@ namespace EventApp.Services
         };
             Context.Entry(promoter).State = EntityState.Modified;
             this.Context.SaveChanges();
-
-            //if (promoter == null) return;
-            //promoter.Info.Contacts = bm.Contacts;
-            //promoter.Info.Name = bm.Name;
-            //promoter.Info.Description = bm.Description;
-            //this.Context.SaveChanges();
         }
     }
 }

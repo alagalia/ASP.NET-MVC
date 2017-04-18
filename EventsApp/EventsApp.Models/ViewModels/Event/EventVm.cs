@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using EventsApp.Models.EntityModels;
 
 namespace EventsApp.Models.ViewModels.Event
@@ -12,6 +13,7 @@ namespace EventsApp.Models.ViewModels.Event
 
         public string Description { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd MM yyyy}")]
         public DateTime StartDateTime { get; set; }
 
         public string ImageUrl { get; set; }
@@ -23,6 +25,8 @@ namespace EventsApp.Models.ViewModels.Event
         public string UserId { get; set; }
 
         public string Category { get; set; }
+
+        public int CommentsCounter { get; set; }
 
     }
 }

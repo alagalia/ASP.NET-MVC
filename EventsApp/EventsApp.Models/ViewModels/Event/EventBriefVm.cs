@@ -11,6 +11,7 @@ namespace EventsApp.Models.ViewModels.Event
         public string Title { get; set; }
 
         [Display(Name ="Start Date")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime StartDateTime { get; set; }
 
         public string ImageUrl { get; set; }

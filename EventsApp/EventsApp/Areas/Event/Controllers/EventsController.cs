@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using EventApp.Services;
 using EventsApp.Attributies;
-using EventsApp.Data;
 using EventsApp.Models.BindingModels;
 using EventsApp.Models.EntityModels;
 using EventsApp.Models.ViewModels.Event;
@@ -34,7 +30,7 @@ namespace EventsApp.Areas.Event.Controllers
         }
 
         [HttpPost]
-        [MyAuthorize(Roles = "Visitor")]
+        [MyAuthorize(Roles = "Visitor")] //TODO
         public ActionResult All([Bind] JoinInEventBm vm)
         {
             if (ModelState.IsValid)
@@ -75,7 +71,7 @@ namespace EventsApp.Areas.Event.Controllers
         public ActionResult CategoriesListForCreateEvent()
         {
             IEnumerable<Category> categories = this.service.GetCategories(); 
-            return PartialView("_CategoriesListForCreateEvent", categories);
+            return PartialView("~/Areas/Event/Views/Shared/_CategoriesListForCreateEvent.cshtml", categories);
         }
 
         //@Html.Action
@@ -112,11 +108,6 @@ namespace EventsApp.Areas.Event.Controllers
         {
             if (ModelState.IsValid)
             {
-                //ApplicationUser currentUser = System.Web.HttpContext.Current.GetOwinContext()
-                //    .GetUserManager<ApplicationUserManager>()
-                //    .FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
-                //ApplicationUserManager manager = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
                 string currentUserId = User.Identity.GetUserId();
                 service.CreateEvent(bind, currentUserId);
                 return RedirectToAction("All");

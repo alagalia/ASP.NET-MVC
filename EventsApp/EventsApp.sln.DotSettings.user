@@ -9,4 +9,5 @@
   &lt;Assembly Path="D:\SOFTUNI-C#\ASP.NET\EventsApp\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\SOFTUNI-C#\ASP.NET\EventsApp\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\SOFTUNI-C#\ASP.NET\EventsApp\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll" /&gt;&#xD;
+  &lt;Assembly Path="D:\SOFTUNI-C#\ASP.NET\EventsApp\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

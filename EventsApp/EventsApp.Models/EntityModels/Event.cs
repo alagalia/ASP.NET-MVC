@@ -14,16 +14,16 @@ namespace EventsApp.Models.EntityModels
         [Key]
         public int Id { get; set; }
 
-        [Required, MinLength(5)]
+        [Required, MaxLength(30)]
         public string  Title { get; set; }
 
-        [Required, MinLength(5)]
+        [MaxLength(300)]
         public string Description { get; set; }
 
         [Required]
         public DateTime StartDateTime { get; set; }
 
-        [Required, MinLength(5)]
+        [Required]
         public string Location { get; set; }
 
         [Required]

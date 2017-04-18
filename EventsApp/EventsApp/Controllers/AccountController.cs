@@ -177,11 +177,11 @@ namespace EventsApp.Controllers
                     {
                         this.UserManager.AddToRole(user.Id, "Promoter");
                         this.service.AddPromoter(user);
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await SignInManager.SignInAsync(user, false, false);
                         return RedirectToAction("AddInfo", "Account");
                     }
                     this.UserManager.AddToRole(user.Id, "Promoter");
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await SignInManager.SignInAsync(user, false, false);
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

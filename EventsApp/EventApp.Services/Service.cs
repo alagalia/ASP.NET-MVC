@@ -7,10 +7,6 @@ namespace EventApp.Services
         private EventsAppContext context;
 
         public  EventsAppContext Context => context ?? (context = new EventsAppContext());
-        //protected Service()
-        //{
-
-        //    this.Context = EventsAppContext.Create();
-        //}
+        
     }
 }
