@@ -17,26 +17,36 @@ namespace EventsApp
         {
             Mapper.Initialize(expression =>
             {
-                expression.CreateMap<PromoterInfo, PromoterInfoVm>();
+                expression.CreateMap<CommentBm, Comment>();
+               
+                expression.CreateMap<Promoter, PromoterInfoVm>();
+
 
                 expression.CreateMap<AddEventBm, Event>()
                     .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.Image));
 
                 expression.CreateMap<Event, EventAllVm>()
                 .ForMember(dest =>dest.CategoryName, opt=>opt.MapFrom(src=>src.Category.Name))
-                .ForMember(dest=>dest.ComentsCouner, opt=>opt.MapFrom(src=>src.Comments.Count));
+                .ForMember(dest =>dest.UserId, opt =>opt.MapFrom(src=>src.Owner.User.Id))
+                .ForMember(dest=>dest.CommentsCounter, opt=>opt.MapFrom(src=>src.Comments.Count));
 
-                expression.CreateMap<Event, EventVm>()
+                expression.CreateMap<Event, EventDetailsVm>()
+                    .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner))
+                    .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Id))
+                    .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner))
+                    .ForMember(dest => dest.CommentsCounter, opt => opt.MapFrom(src => src.Comments.Count));
+
+                expression.CreateMap<Event, EventAllVm>()
                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Owner.Id))
-               .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Id))
+               .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
                .ForMember(dest => dest.CommentsCounter, opt => opt.MapFrom(src => src.Comments.Count));
 
                 expression.CreateMap<Comment, CommentVm>()
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.UserName));
 
                 expression.CreateMap<IEnumerable<Event>, IEnumerable<EventBriefVm>>();
-                expression.CreateMap<IEnumerable<Event>, IEnumerable<EventAllVm>>();
-                expression.CreateMap<IEnumerable<Event>, IEnumerable<EventVm>>();
+                expression.CreateMap<IEnumerable<Event>, List<EventAllVm>>();
+                expression.CreateMap<IEnumerable<Event>, List<EventDetailsVm>>();
             });
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

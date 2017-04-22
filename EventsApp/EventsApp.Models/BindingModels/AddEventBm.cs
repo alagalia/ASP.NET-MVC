@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using EventsApp.Models.Attributies;
 
 namespace EventsApp.Models.BindingModels
 {
@@ -23,7 +24,7 @@ namespace EventsApp.Models.BindingModels
         [StringLength(11)]
         public string YouTubeUrl { get; set; }
 
-        [Range(1, 100)]
+        [CategoryId]
         public int CategoryId { get; set; }
     }
 }

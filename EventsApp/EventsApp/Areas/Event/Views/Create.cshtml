@@ -55,11 +55,12 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.StartDateTime, new { @class = "col-lg-3 control-label" })
+                    @Html.LabelFor(m => m.StartDateTime, new {@class = "col-lg-3 control-label"})
                     <div class="col-lg-9">
-                        @Html.TextBoxFor(m => m.StartDateTime, "yyyy-MM-dd", new { @class = "form-control", @type = "datetime", name = "StartDateTime", id = "StartDateTime" })
+                        @Html.TextBoxFor(m => m.StartDateTime, "yyyy-MM-dd", new {@class = "form-control", @type = "datetime", name = "StartDateTime", id = "StartDateTime"})
                     </div>
                 </div>
+
                 <div class="form-group">
                     @Html.Action("CategoriesListForCreateEvent", "Events")
                 </div>

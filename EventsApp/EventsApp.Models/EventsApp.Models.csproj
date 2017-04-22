@@ -93,7 +93,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributies\CategoryIdAttribute.cs" />
     <Compile Include="BindingModels\AddEventBm.cs" />
+    <Compile Include="BindingModels\CommentBm.cs" />
     <Compile Include="BindingModels\EditInfoPromoterBm.cs" />
     <Compile Include="BindingModels\JoinInEventBm.cs" />
     <Compile Include="EntityModels\ApplicationUser.cs" />
@@ -117,7 +119,7 @@
     <Compile Include="ViewModels\Event\CommentVm.cs" />
     <Compile Include="ViewModels\Event\EventAllVm.cs" />
     <Compile Include="ViewModels\Event\EventBriefVm.cs" />
-    <Compile Include="ViewModels\Event\EventVm.cs" />
+    <Compile Include="ViewModels\Event\EventDetailsVm.cs" />
     <Compile Include="ViewModels\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -127,7 +129,7 @@
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\Promoter\EditInfoPromoterVm.cs" />
-    <Compile Include="ViewModels\Promoter\PromoterAllInfoVm.cs" />
+    <Compile Include="ViewModels\Promoter\PromoterDetailsInfoVm.cs" />
     <Compile Include="ViewModels\Promoter\PromoterInfoVm.cs" />
     <Compile Include="ViewModels\Visitor\MyEventVisitorVm.cs" />
   </ItemGroup>
@@ -135,9 +137,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Attributies\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

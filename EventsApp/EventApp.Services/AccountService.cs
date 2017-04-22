@@ -10,13 +10,9 @@ namespace EventApp.Services
         public void AddInfoToPromoter(AddInfoAccountBm bind, string currentuserId)
         {
             Promoter promoter = this.Context.Promoters.FirstOrDefault(p => p.User.Id == currentuserId);
-            this.Context.UserInfos.Add(new PromoterInfo()
-            {
-                Contacts = bind.Contacts,
-                Description = bind.Description,
-                Name = bind.Name,
-                Promoter = promoter
-            });
+            promoter.Contacts = bind.Contacts;
+            promoter.Description = bind.Description;
+            promoter.Name = bind.Name;
             this.Context.SaveChanges();
         }
 

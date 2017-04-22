@@ -20,8 +20,6 @@ namespace EventsApp.Data
 
         public virtual DbSet<Visitor> Visitors { get; set; }
 
-        public virtual DbSet<PromoterInfo> UserInfos { get; set; }
-
         public virtual DbSet<Comment> Comments { get; set; }
 
         public static EventsAppContext Create()

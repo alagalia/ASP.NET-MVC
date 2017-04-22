@@ -33,9 +33,8 @@ namespace EventsApp.Controllers
         [Route("All")]
         public ActionResult All()
         {
-            //todo make method in service remove db
-            var promoters = db.Promoters.Include(p => p.Info);
-            return View(promoters.ToList());
+            IEnumerable<PromoterInfoVm> promoters = this.service.GetPromoterInfoVms();
+            return View(promoters);
         }
 
         //todo make action profile of promoter with all his events
@@ -46,7 +45,7 @@ namespace EventsApp.Controllers
         [Route("Details/{id}")]
         public ActionResult Details(int id)
         {
-            PromoterAllInfoVm promoter = this.service.GetPromoterAllInfoVm(id);
+            PromoterDetailsInfoVm promoter = this.service.GetPromoterAllInfoVm(id);
             if (promoter == null)
             {
                 return HttpNotFound();

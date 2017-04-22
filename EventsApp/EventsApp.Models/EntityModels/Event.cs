@@ -17,7 +17,6 @@ namespace EventsApp.Models.EntityModels
         [Required, MaxLength(30)]
         public string  Title { get; set; }
 
-        [MaxLength(300)]
         public string Description { get; set; }
 
         [Required]

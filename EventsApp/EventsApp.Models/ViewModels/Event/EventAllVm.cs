@@ -21,10 +21,12 @@ namespace EventsApp.Models.ViewModels.Event
 
         public string Description { get; set; }
 
+        public string UserId { get; set; }
+
         [StringLength(11)]
         public string YouTubeUrl { get; set; }
 
-        public int ComentsCouner { get; set; }
+        public int CommentsCounter { get; set; }
 
     }
 }

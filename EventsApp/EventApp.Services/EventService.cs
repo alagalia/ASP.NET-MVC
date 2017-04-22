@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using AutoMapper;
 using EventsApp.Models.BindingModels;
 using EventsApp.Models.EntityModels;
@@ -30,17 +26,6 @@ namespace EventApp.Services
             };
 
             Category catg = this.Context.Categories.Find(bind.CategoryId);
-            //Event ev = new Event()
-            //{
-            //    Title = bind.Title,
-            //    Description = bind.Description,
-            //    StartDateTime = DateTime.Now,
-            //    Owner = promoter,
-            //    Category = catg,
-            //    Location = bind.Location,
-            //    ImageUrl = bind.Image,
-            //    YouTubeUrl = bind.YouTubeUrl
-            //};
             Event ev = Mapper.Map<AddEventBm, Event>(bind);
             ev.Category = catg;
             ev.Owner = promoter;
@@ -48,15 +33,15 @@ namespace EventApp.Services
             this.Context.SaveChanges();
         }
 
-        public EventVm GetEventVm(int id)
+        public EventDetailsVm GetEventDetailsVm(int id)
         {
             Event ev = this.Context.Events.Find(id);
             if (ev == null)
             {
                 return null;
             }
-
-            EventVm eventVm = Mapper.Map<Event, EventVm>(ev);
+            
+            EventDetailsVm eventVm = Mapper.Map<Event, EventDetailsVm>(ev);
             return eventVm;
         }
 
@@ -78,42 +63,33 @@ namespace EventApp.Services
 
         public IEnumerable<EventAllVm> GetEventAllVms(string categoryName)
         {
-            IEnumerable<Event> categories = this.Context.Events;
-            if (categoryName != null)
+            if (categoryName == null)
             {
-                categories = categories.ToList().Where(e => e.Category.Name == categoryName);
+                return Mapper.Map<IEnumerable<Event>, IEnumerable<EventAllVm>>(this.Context.Events);
             }
-            IEnumerable<EventAllVm> vms =
-                categories.Select(@event => new EventAllVm()
-                {
-                    CategoryName = @event.Category.Name,
-                    Description = @event.Description,
-                    Location = @event.Location,
-                    Id = @event.Id,
-                    ImageUrl = @event.ImageUrl,
-                    StartDateTime = @event.StartDateTime,
-                    Title = @event.Title,
-                    YouTubeUrl = @event.YouTubeUrl
-                });
-            return vms;
+            Category category = this.Context.Categories.FirstOrDefault(c => c.Name == categoryName);
+            IEnumerable<Event> events = this.Context.Events.Where(e=>e.Category.Name == categoryName);
+
+            return category != null ? Mapper.Map<IEnumerable<Event>, IEnumerable<EventAllVm>>(events) : null;
         }
 
         public IEnumerable<EventAllVm> GetMyEventsVms(string currentUserId)
         {
             ApplicationUser currentUser = this.Context.Users.FirstOrDefault(x => x.Id == currentUserId);
+            IEnumerable<EventAllVm> vms = Mapper.Map<IEnumerable<Event>, IEnumerable<EventAllVm>>(this.Context.Events.Where(e => e.Owner.User.Id == currentUser.Id));
 
-            IEnumerable<EventAllVm> vms =
-                this.Context.Events.Where(e => e.Owner.User.Id == currentUser.Id).Select(@event => new EventAllVm()
-                {
-                    CategoryName = @event.Category.Name,
-                    Description = @event.Description,
-                    Id = @event.Id,
-                    ImageUrl = @event.ImageUrl,
-                    StartDateTime = @event.StartDateTime,
-                    Title = @event.Title,
-                    Location = @event.Location,
-                    YouTubeUrl = @event.YouTubeUrl
-                });
+            //IEnumerable<EventAllVm> vms =
+            //    this.Context.Events.Where(e => e.Owner.User.Id == currentUser.Id).Select(@event => new EventAllVm()
+            //    {
+            //        CategoryName = @event.Category.Name,
+            //        Description = @event.Description,
+            //        Id = @event.Id,
+            //        ImageUrl = @event.ImageUrl,
+            //        StartDateTime = @event.StartDateTime,
+            //        Title = @event.Title,
+            //        Location = @event.Location,
+            //        YouTubeUrl = @event.YouTubeUrl
+            //    });
             return vms;
         }
 
@@ -126,18 +102,8 @@ namespace EventApp.Services
 
         public IEnumerable<EventAllVm> GetEventByLocationVms(string location)
         {
-            IEnumerable<EventAllVm> vms =
-                this.Context.Events.Where(e => e.Location == location).Select(@event => new EventAllVm()
-                {
-                    CategoryName = @event.Category.Name,
-                    Description = @event.Description,
-                    Id = @event.Id,
-                    ImageUrl = @event.ImageUrl,
-                    StartDateTime = @event.StartDateTime,
-                    Title = @event.Title,
-                    Location = @event.Location,
-                    YouTubeUrl = @event.YouTubeUrl
-                });
+            IEnumerable<Event> events = this.Context.Events.Where(e => e.Location == location);
+            IEnumerable<EventAllVm> vms= Mapper.Map<IEnumerable<Event>, IEnumerable<EventAllVm>>(events);
             return vms;
         }
 
@@ -147,6 +113,22 @@ namespace EventApp.Services
             IEnumerable<Comment> comments = this.Context.Events.Find(eventId).Comments;
             IEnumerable<CommentVm> vms = Mapper.Map<IEnumerable<Comment>, IEnumerable<CommentVm>>(comments);
             return vms;
+        }
+
+        public void DeleteEvent(int id)
+        {
+            Event ev = this.Context.Events.Find(id);
+            this.Context.Events.Remove(ev);
+            this.Context.SaveChanges();
+        }
+
+        public void AddComment(int id, CommentBm comments)
+        {
+            Event ev = this.Context.Events.Find(id);
+            Comment  comment  = Mapper.Map<CommentBm,Comment>(comments);
+            ev.Comments.Add(comment);
+            Context.SaveChanges();
+
         }
     }
 }

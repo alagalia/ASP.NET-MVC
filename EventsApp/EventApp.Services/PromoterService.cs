@@ -12,7 +12,7 @@ namespace EventApp.Services
 {
     public class PromoterService : Service
     {
-        public PromoterAllInfoVm GetPromoterAllInfoVm(int id)
+        public PromoterDetailsInfoVm GetPromoterAllInfoVm(int id)
         {
             IEnumerable<Event> currentEvents = this.Context.Events.ToList().Where(e => e.Owner.Id == id);
             //IEnumerable<EventBriefVm> cuurentEventBriefVms = Mapper.Map<IEnumerable<Event>, IEnumerable<EventBriefVm>>(currentEvents);
@@ -29,9 +29,9 @@ namespace EventApp.Services
             if (promoter != null)
             {
                 promoterInfoVm =
-                    Mapper.Map<PromoterInfo, PromoterInfoVm>(promoter.Info);
+                    Mapper.Map<Promoter, PromoterInfoVm>(promoter);
             }
-            PromoterAllInfoVm vm = new PromoterAllInfoVm()
+            PromoterDetailsInfoVm vm = new PromoterDetailsInfoVm()
             {
                 Events = cuurentEventBriefVms,
                 Info = promoterInfoVm
@@ -45,25 +45,28 @@ namespace EventApp.Services
             EditInfoPromoterVm vm = new EditInfoPromoterVm()
             {
                 Id = promoter.Id,
-                Description = promoter.Info.Description,
-                Contacts = promoter.Info.Contacts,
-                Name = promoter.Info.Name
+                Description = promoter.Description,
+                Contacts = promoter.Contacts,
+                Name = promoter.Name
             };
             return vm;
         }
 
         public void EditInfoPromoter(EditInfoPromoterBm bm)
         {
-            PromoterInfo promoter = new PromoterInfo()
-            {
-                Id = bm.Id,
-                Contacts = bm.Contacts,
-                Name = bm.Name,
-                Description = bm.Description,
-                Promoter = this.Context.Promoters.Find(bm.Id)
-        };
+            Promoter promoter = this.Context.Promoters.Find(bm.Id);
+            promoter.Contacts = bm.Contacts;
+            promoter.Name = bm.Name;
+            promoter.Description = bm.Description;
+
             Context.Entry(promoter).State = EntityState.Modified;
             this.Context.SaveChanges();
+        }
+
+        public IEnumerable<PromoterInfoVm> GetPromoterInfoVms()
+        {
+            IEnumerable<Promoter> promoters = this.Context.Promoters;
+            return Mapper.Map<IEnumerable<Promoter>, IEnumerable<PromoterInfoVm>>(promoters);
         }
     }
 }

@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Web.Mvc;
+using System.Web.Routing;
 using EventApp.Services;
 using EventsApp.Attributies;
 using EventsApp.Models.BindingModels;
@@ -26,6 +29,10 @@ namespace EventsApp.Areas.Event.Controllers
         public ActionResult All(string categoryName)
         {
             IEnumerable<EventAllVm> vm = this.service.GetEventAllVms(categoryName);
+            if (vm == null)
+            {
+                return HttpNotFound();
+            }
             return View("~/Areas/Event/Views/All.cshtml", vm);
         }
 
@@ -70,7 +77,7 @@ namespace EventsApp.Areas.Event.Controllers
         [ChildActionOnly]
         public ActionResult CategoriesListForCreateEvent()
         {
-            IEnumerable<Category> categories = this.service.GetCategories(); 
+            IEnumerable<Category> categories = this.service.GetCategories();
             return PartialView("~/Areas/Event/Views/Shared/_CategoriesListForCreateEvent.cshtml", categories);
         }
 
@@ -99,7 +106,6 @@ namespace EventsApp.Areas.Event.Controllers
         }
 
 
-
         // POST: Events/Create
         [HttpPost]
         [MyAuthorize(Roles = "Promoter")]
@@ -115,12 +121,13 @@ namespace EventsApp.Areas.Event.Controllers
 
             return View("~/Areas/Event/Views/Create.cshtml");
         }
-       
+
         //// GET: Events/Details/5
         [Route("details/{id}")]
         public ActionResult Details(int id)
         {
-            EventVm @event = this.service.GetEventVm(id);
+            ViewBag.Eventid = id;
+            EventDetailsVm @event = this.service.GetEventDetailsVm(id);
             if (@event == null)
             {
                 return HttpNotFound();
@@ -128,6 +135,52 @@ namespace EventsApp.Areas.Event.Controllers
             return View("~/Areas/Event/Views/Details.cshtml", @event);
         }
 
+        // POST: Events/Delete/5 //TODO: fix action name with delete
+        [HttpPost]
+        [Route("Details/{id}")]
+        //[ValidateAntiForgeryToken]
+        //[MyAuthorize(Roles = "Admin|Promoter")]
+        public ActionResult Details()
+        {
+            var param = RouteData.Values["Id"];
+            if (param == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            int id = int.Parse(param.ToString());
+            var ev = this.service.GetEventDetailsVm(id);
+            if (ev == null)
+            {
+                return HttpNotFound();
+            }
+            this.service.DeleteEvent(id);
+            return RedirectToAction("All");
+
+            //return RedirectToAction("Details", new { id });
+
+        }
+
+        // POST: Events/Comment?Id= //TODO: fix action name with delete
+        [HttpPost]
+        [Route("Comment/{id}")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Comment([Bind] CommentBm bind)
+        {
+            var param = RouteData.Values["Id"];
+            if (param == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            int id = int.Parse(param.ToString());
+            if (id <=0 )
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            this.service.AddComment(id, bind);
+            return Redirect(this.Request.UrlReferrer.AbsolutePath);
+
+        }
 
         //// GET: Events/{location}
         [HttpGet]
@@ -172,33 +225,14 @@ namespace EventsApp.Areas.Event.Controllers
         //    return View(@event);
         //}
 
-        //// GET: Events/Delete/5
-        //[MyAuthorize(Roles = "Admin")]
+        //GET: Events/Delete/5
         //public ActionResult Delete(int? id)
         //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Event @event = db.Events.Find(id);
-        //    if (@event == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(@event);
+        //    return RedirectToAction("DeleteConfirmed");
+
         //}
 
-        //// POST: Events/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //[MyAuthorize(Roles = "Admin")]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Event @event = db.Events.Find(id);
-        //    db.Events.Remove(@event);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+
 
         //protected override void Dispose(bool disposing)
         //{
