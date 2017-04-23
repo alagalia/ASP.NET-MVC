@@ -17,6 +17,7 @@
             {
                 using (Html.BeginForm())
                 {
+                    <input hidden="hidden" name="id" value="@Model.Id" />
                     <div class="form-group">
                         <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you wish to delete this event?');" />
                     </div>
@@ -46,7 +47,7 @@
                     </div>
                     <div>
                         <h4>
-                            <span style="color: orange;"><strong>ADDRESS: </strong></span> ========
+                            <span style="color: orange;"><strong>ADDRESS: </strong></span> @Model.Address
                         </h4>
                     </div>
                 </div>
@@ -87,16 +88,17 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        @Html.ValidationSummary(false, "", new {@class = "text-danger"})
                         <div class="form-group">
-                            <input name="EventId" type="hidden" value="@Model.Id" class="form-control" />
+                            <input name="EventId" type="hidden" value="@Model.Id" class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Join in" class="btn btn-info" />
+                            <input type="submit" value="Join in" class="btn btn-info"/>
                         </div>
                     }
                 }
             </div>
+            <div style="height: 15px; border-bottom: 1px solid orange" class="col-sm-12 col-md-12 col-lg-12"></div>
             <div class="ratings">
                 <p class="pull-right">@Model.CommentsCounter coments</p>
                 <p>

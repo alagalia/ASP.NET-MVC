@@ -55,12 +55,9 @@ namespace EventsApp.Areas.Event.Controllers
         [Route("MyEvents")]
         public ActionResult MyEvents()
         {
-            //string path = HttpContext.Request.Url.LocalPath;
-            //TODO list events only for usre and selected by category
-
             string currentUserId = User.Identity.GetUserId();
             IEnumerable<EventAllVm> vms = this.service.GetMyEventsVms(currentUserId);
-            return View("~/Areas/Event/Views/All.cshtml", vms);
+            return View("~/Areas/Event/Views/AllMy.cshtml", vms);
         }
 
         // GET: Events/Create
@@ -137,18 +134,16 @@ namespace EventsApp.Areas.Event.Controllers
 
         // POST: Events/Delete/5 //TODO: fix action name with delete
         [HttpPost]
-        [Route("Details/{id}")]
+        [Route("Delete")]
         //[ValidateAntiForgeryToken]
         //[MyAuthorize(Roles = "Admin|Promoter")]
-        public ActionResult Details()
+        public ActionResult Delete(int id)
         {
-            var param = RouteData.Values["Id"];
-            if (param == null)
+            if (id < 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            int id = int.Parse(param.ToString());
             var ev = this.service.GetEventDetailsVm(id);
             if (ev == null)
             {
@@ -161,7 +156,7 @@ namespace EventsApp.Areas.Event.Controllers
 
         }
 
-        // POST: Events/Comment?Id= //TODO: fix action name with delete
+        // POST: Events/Comment?Id= 
         [HttpPost]
         [Route("Comment/{id}")]
         //[ValidateAntiForgeryToken]
@@ -181,6 +176,8 @@ namespace EventsApp.Areas.Event.Controllers
             return Redirect(this.Request.UrlReferrer.AbsolutePath);
 
         }
+
+
 
         //// GET: Events/{location}
         [HttpGet]
@@ -225,12 +222,7 @@ namespace EventsApp.Areas.Event.Controllers
         //    return View(@event);
         //}
 
-        //GET: Events/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    return RedirectToAction("DeleteConfirmed");
-
-        //}
+       
 
 
 

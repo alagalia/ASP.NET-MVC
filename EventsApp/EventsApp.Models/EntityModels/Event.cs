@@ -25,6 +25,8 @@ namespace EventsApp.Models.EntityModels
         [Required]
         public string Location { get; set; }
 
+        public string  Address { get; set; }
+
         [Required]
         public string ImageUrl { get; set; }
 

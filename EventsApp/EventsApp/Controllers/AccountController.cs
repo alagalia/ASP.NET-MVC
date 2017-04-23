@@ -180,7 +180,8 @@ namespace EventsApp.Controllers
                         await SignInManager.SignInAsync(user, false, false);
                         return RedirectToAction("AddInfo", "Account");
                     }
-                    this.UserManager.AddToRole(user.Id, "Promoter");
+                    this.UserManager.AddToRole(user.Id, "Visitor");
+                    this.service.AddVisitor(user);
                     await SignInManager.SignInAsync(user, false, false);
                     return RedirectToAction("Index", "Home");
                 }

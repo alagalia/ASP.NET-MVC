@@ -204,6 +204,7 @@
     <Content Include="Areas\Visitor\Views\MyEvents.cshtml" />
     <Content Include="Areas\Event\Views\Shared\_Comments.cshtml" />
     <Content Include="Areas\Comment\Views\web.config" />
+    <Content Include="Areas\Event\Views\AllMy.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -9,7 +9,7 @@ namespace EventsApp.Models.BindingModels
         [MinLength(5), MaxLength(30, ErrorMessage= "Title cannot be more than 30 characters!")]
         public string Title { get; set; }
 
-        [MaxLength(300, ErrorMessage = "Title cannot be more than 30 characters!")]
+        [MaxLength(300, ErrorMessage = "Description cannot be more than 300 characters!")]
         public string Description { get; set; }
 
         [Display(Name = "Start Date & Time")]
@@ -17,6 +17,8 @@ namespace EventsApp.Models.BindingModels
 
         [Required]
         public string Location { get; set; }
+        
+        public string Address { get; set; }
 
         [Required]
         public string Image { get; set; }
@@ -24,7 +26,7 @@ namespace EventsApp.Models.BindingModels
         [StringLength(11)]
         public string YouTubeUrl { get; set; }
 
-        [CategoryId]
+        //[CategoryId]
         public int CategoryId { get; set; }
     }
 }

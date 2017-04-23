@@ -31,6 +31,11 @@ namespace EventsApp.Areas.Visitor.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            if (ModelState.IsValid)
+            {
+                string currentUserId = User.Identity.GetUserId();
+                this.service.RemoveEventFormUserList(currentUserId, id);
+            }
             return RedirectToAction("MyEvents");
         }
     }

@@ -24,5 +24,14 @@ namespace EventApp.Services
             this.Context.Promoters.Add(promoter);
             this.Context.SaveChanges();
         }
+
+        public void AddVisitor(ApplicationUser user)
+        {
+            Visitor visitor = new Visitor();
+            ApplicationUser currentUser = this.Context.Users.Find(user.Id);
+            visitor.User = currentUser;
+            this.Context.Visitors.Add(visitor);
+            this.Context.SaveChanges();
+        }
     }
 }

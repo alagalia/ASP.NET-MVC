@@ -33,7 +33,13 @@
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
             <td>
-                @Html.ActionLink("Remove from my list", "Delete", new {id = item.Id})
+                @using (Html.BeginForm("Delete", "Visitors", FormMethod.Post))
+                {
+                    <input hidden="hidden" name="id" value="@item.Id" />
+                            <div class="form-group">
+                                <input type="submit" value="Remove from my list" class="btn btn-warning" onclick="return confirm('Are you sure you wish to remove this event frm your list?');" />
+                            </div>
+                }
             </td>
         </tr>
     }

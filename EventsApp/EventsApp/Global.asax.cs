@@ -8,6 +8,7 @@ using EventsApp.Models.BindingModels;
 using EventsApp.Models.EntityModels;
 using EventsApp.Models.ViewModels.Event;
 using EventsApp.Models.ViewModels.Promoter;
+using EventsApp.Models.ViewModels.Visitor;
 
 namespace EventsApp
 {
@@ -18,8 +19,8 @@ namespace EventsApp
             Mapper.Initialize(expression =>
             {
                 expression.CreateMap<CommentBm, Comment>();
-               
                 expression.CreateMap<Promoter, PromoterInfoVm>();
+                expression.CreateMap<Event, MyEventVisitorVm>();
 
 
                 expression.CreateMap<AddEventBm, Event>()
@@ -33,7 +34,6 @@ namespace EventsApp
                 expression.CreateMap<Event, EventDetailsVm>()
                     .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner))
                     .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Id))
-                    .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner))
                     .ForMember(dest => dest.CommentsCounter, opt => opt.MapFrom(src => src.Comments.Count));
 
                 expression.CreateMap<Event, EventAllVm>()
@@ -47,6 +47,8 @@ namespace EventsApp
                 expression.CreateMap<IEnumerable<Event>, IEnumerable<EventBriefVm>>();
                 expression.CreateMap<IEnumerable<Event>, List<EventAllVm>>();
                 expression.CreateMap<IEnumerable<Event>, List<EventDetailsVm>>();
+                expression.CreateMap<IEnumerable<Event>, List<MyEventVisitorVm>>();
+                
             });
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
