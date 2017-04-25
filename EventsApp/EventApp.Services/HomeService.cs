@@ -1,25 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
+using EventApp.Services.Intefaces;
 using EventsApp.Models.EntityModels;
 using EventsApp.Models.ViewModels.Event;
 
 namespace EventApp.Services
 {
-    public class HomeService :Service
+    public class HomeService :Service, IHomeService
     {
-        //get first 6 recently events
-        public IEnumerable<EventBriefVm> Get6RecentlyEventsBriefVms()
+        public IEnumerable<EventBriefVm> Get3RecentlyEventsBriefVms()
         {
-            IEnumerable<Event> eventsFirst6 =  this.Context.Events.OrderBy(e => e.StartDateTime).Take(3);
-            IEnumerable<EventBriefVm> vms = eventsFirst6.Select(e => new EventBriefVm()
-            {
-                Category = e.Category,
-                Id = e.Id,
-                ImageUrl = e.ImageUrl,
-                StartDateTime = e.StartDateTime,
-                Title = e.Title
-            });
+            IEnumerable<Event> eventsFirst3 =  this.Context.Events.OrderBy(e => e.StartDateTime).Take(3);
+            IEnumerable<EventBriefVm> vms = Mapper.Map<IEnumerable<Event>, IEnumerable<EventBriefVm>>(eventsFirst3);
             return vms;
         }
     }

@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
+using EventApp.Services.Intefaces;
 using EventsApp.Models.BindingModels;
 using EventsApp.Models.EntityModels;
 using EventsApp.Models.ViewModels.Event;
@@ -10,20 +10,12 @@ using EventsApp.Models.ViewModels.Promoter;
 
 namespace EventApp.Services
 {
-    public class PromoterService : Service
+    public class PromoterService : Service, IPromoterService
     {
         public PromoterDetailsInfoVm GetPromoterAllInfoVm(int id)
         {
             IEnumerable<Event> currentEvents = this.Context.Events.ToList().Where(e => e.Owner.Id == id);
-            //IEnumerable<EventBriefVm> cuurentEventBriefVms = Mapper.Map<IEnumerable<Event>, IEnumerable<EventBriefVm>>(currentEvents);
-            IEnumerable<EventBriefVm> cuurentEventBriefVms = currentEvents.Select(e => new EventBriefVm()
-            {
-                Category = e.Category,
-                Id = e.Id,
-                ImageUrl = e.ImageUrl,
-                StartDateTime = e.StartDateTime,
-                Title = e.Title
-            });
+            IEnumerable<EventBriefVm> cuurentEventBriefVms = Mapper.Map<IEnumerable<Event>, IEnumerable<EventBriefVm>>(currentEvents);
             PromoterInfoVm promoterInfoVm = null;
             Promoter promoter = this.Context.Promoters.Find(id);
             if (promoter != null)
@@ -42,13 +34,14 @@ namespace EventApp.Services
         public EditInfoPromoterVm GetEditUserPtofileVm(string currentUserId)
         {
             Promoter promoter = this.Context.Promoters.FirstOrDefault(p => p.User.Id == currentUserId);
-            EditInfoPromoterVm vm = new EditInfoPromoterVm()
-            {
-                Id = promoter.Id,
-                Description = promoter.Description,
-                Contacts = promoter.Contacts,
-                Name = promoter.Name
-            };
+            EditInfoPromoterVm vm = Mapper.Map<Promoter, EditInfoPromoterVm>(promoter);
+            //EditInfoPromoterVm vm = new EditInfoPromoterVm()
+            //{
+            //    Id = promoter.Id,
+            //    Description = promoter.Description,
+            //    Contacts = promoter.Contacts,
+            //    Name = promoter.Name
+            //};
             return vm;
         }
 

@@ -1,27 +1,38 @@
-﻿@model IEnumerable<EventsApp.Models.ViewModels.Event.EventAllVm>
+﻿@model IPagedList<EventsApp.Models.ViewModels.Event.EventAllVm>
 @{ Layout = "~/Views/Shared/_Layout.cshtml"; }
 @{
     ViewBag.Title = "All events";
 }
+
+@using PagedList;
+
+@using PagedList.Mvc;
+
+
 <div style="height: 30px"></div>
 
 <div class="container body-content">
-    
     <div class="row">
         <div class="col-md-3">
             <p class="lead">Categories</p>
             <hr/>
-            @Html.Action("CategoriesListForEventAll")
+            @Html.Action("CategoriesListForEventAll", "Events")
 
             <p class="lead">Search by Locations</p>
             <hr/>
-            @Html.Action("LocationsListForEventAll")
+            @Html.Action("LocationsListForEventAll", "Events")
         </div>
         <div class="col-md-9">
-            @foreach (var eventItem in Model)
+           @foreach (var eventItem in Model)
             {
                 @Html.Partial("~/Views/Shared/_EventAllPartial.cshtml", eventItem)
             }
         </div>
+    </div>
+    <div class="col-md-offset-3 col-md-9">
+        @Html.PagedListPager(@Model, pageNumber => Url.Action("All", "Events", new
+       {
+           pageNumber
+       }))
     </div>
 </div>

@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using EventApp.Services.Intefaces;
 using EventsApp.Models.BindingModels;
 using EventsApp.Models.EntityModels;
 using EventsApp.Models.ViewModels.Event;
 
 namespace EventApp.Services
 {
-    public class EventService : Service
+    public class EventService : Service, IEventService
     {
         public IEnumerable<Category> GetCategories()
         {
@@ -77,20 +78,7 @@ namespace EventApp.Services
         {
             ApplicationUser currentUser = this.Context.Users.FirstOrDefault(x => x.Id == currentUserId);
             IEnumerable<EventAllVm> vms = Mapper.Map<IEnumerable<Event>, IEnumerable<EventAllVm>>(this.Context.Events.Where(e => e.Owner.User.Id == currentUser.Id));
-
-            //IEnumerable<EventAllVm> vms =
-            //    this.Context.Events.Where(e => e.Owner.User.Id == currentUser.Id).Select(@event => new EventAllVm()
-            //    {
-            //        CategoryName = @event.Category.Name,
-            //        Description = @event.Description,
-            //        Id = @event.Id,
-            //        ImageUrl = @event.ImageUrl,
-            //        StartDateTime = @event.StartDateTime,
-            //        Title = @event.Title,
-            //        Location = @event.Location,
-            //        YouTubeUrl = @event.YouTubeUrl
-            //    });
-            return vms;
+           return vms;
         }
 
         public IEnumerable<string> GetLocations()
@@ -129,6 +117,12 @@ namespace EventApp.Services
             ev.Comments.Add(comment);
             Context.SaveChanges();
 
+        }
+
+        public int CalculateRating()
+        {
+            int result = this.Context.Events.Sum(e => e.Rating)/ this.Context.Events.Count() % 5;
+            return result;
         }
     }
 }

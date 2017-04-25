@@ -119,3 +119,7 @@ textarea {
             color: #333;
         }
 }
+
+#hidden {
+    background: orange
+}

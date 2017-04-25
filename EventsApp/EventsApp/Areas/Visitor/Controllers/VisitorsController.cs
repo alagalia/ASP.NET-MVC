@@ -2,6 +2,7 @@
 using System.Net;
 using System.Web.Mvc;
 using EventApp.Services;
+using EventApp.Services.Intefaces;
 using EventsApp.Models.ViewModels.Visitor;
 using Microsoft.AspNet.Identity;
 
@@ -9,11 +10,11 @@ namespace EventsApp.Areas.Visitor.Controllers
 {
     public class VisitorsController : Controller
     {
-        private VisitorService service;
+        private IVisitorService service;
 
-        public VisitorsController()
+        public VisitorsController(IVisitorService service)
         {
-            this.service = new VisitorService();
+            this.service = service;
         }
         // GET: Visitor/MyEvents
         public ActionResult MyEvents()

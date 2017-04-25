@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using EventsApp.Models.Attributies;
 
 namespace EventsApp.Models.BindingModels
 {

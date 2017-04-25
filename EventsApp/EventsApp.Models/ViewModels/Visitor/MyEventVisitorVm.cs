@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using EventsApp.Models.EntityModels;
 
 namespace EventsApp.Models.ViewModels.Visitor
 {

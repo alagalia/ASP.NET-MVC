@@ -1,6 +1,4 @@
-﻿using EventsApp.Models.EntityModels;
-
-namespace EventsApp.Models.ViewModels.Promoter
+﻿namespace EventsApp.Models.ViewModels.Promoter
 {
     public class EditInfoPromoterVm
     {

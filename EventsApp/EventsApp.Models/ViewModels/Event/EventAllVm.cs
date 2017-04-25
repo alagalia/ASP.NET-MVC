@@ -27,6 +27,8 @@ namespace EventsApp.Models.ViewModels.Event
         [StringLength(11)]
         public string YouTubeUrl { get; set; }
 
+        public int Rating { get; set; }
+
         public int CommentsCounter { get; set; }
 
     }

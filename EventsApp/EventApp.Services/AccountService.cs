@@ -1,11 +1,11 @@
 ﻿using System.Linq;
+using EventApp.Services.Intefaces;
 using EventsApp.Models.BindingModels;
 using EventsApp.Models.EntityModels;
-using Microsoft.AspNet.Identity;
 
 namespace EventApp.Services
 {
-    public class AccountService :Service
+    public class AccountService :Service, IAccountService
     {
         public void AddInfoToPromoter(AddInfoAccountBm bind, string currentuserId)
         {

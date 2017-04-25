@@ -1,7 +1,5 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using EventsApp.Data;
-using EventsApp.Models.EntityModels;
 
 namespace EventsApp.Attributies
 {

@@ -1,43 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using System.Web.Routing;
 using EventApp.Services;
+using EventApp.Services.Intefaces;
 using EventsApp.Attributies;
 using EventsApp.Models.BindingModels;
 using EventsApp.Models.EntityModels;
 using EventsApp.Models.ViewModels.Event;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace EventsApp.Areas.Event.Controllers
 {
     [RoutePrefix("Events")]
     public class EventsController : Controller
     {
-        private EventService service;
+        private IEventService service;
 
-        public EventsController()
+        public EventsController(IEventService service)
         {
-            this.service = new EventService();
+            this.service = service;
         }
 
         // GET: Events
         [HttpGet]
         [AllowAnonymous]
         [Route("All/{categoryName?}")]
-        public ActionResult All(string categoryName)
+        public ActionResult All(string categoryName, int? pageNumber)
         {
-            IEnumerable<EventAllVm> vm = this.service.GetEventAllVms(categoryName);
+            IEnumerable<EventAllVm> vm = this.service.GetEventAllVms(categoryName).ToList().ToPagedList(pageNumber ?? 1, 6); ;
             if (vm == null)
             {
                 return HttpNotFound();
             }
+            this.ViewBag.Rating = this.service.CalculateRating();
             return View("~/Areas/Event/Views/All.cshtml", vm);
         }
 
+        //join in to event
         [HttpPost]
-        [MyAuthorize(Roles = "Visitor")] //TODO
+        [MyAuthorize(Roles = "Visitor")] 
         public ActionResult All([Bind] JoinInEventBm vm)
         {
             if (ModelState.IsValid)

@@ -17,9 +17,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("All Events", "All", "Events")</li>
-
-
-                    <li>@Html.ActionLink("About us", "About", "Home")</li>
+                    <li>@Html.ActionLink("All promoters", "All", "Promoters")</li>
                     <li>@Html.ActionLink("Contact us", "Contact", "Home")</li>
                 </ul>
 
@@ -29,6 +27,7 @@
     </div>
     <div class="container body-content">
         <div style="height: 60px"></div>
+        <div id="effect" hidden="hidden"></div>
         @RenderBody()
         <hr />
         <footer>

@@ -33,6 +33,8 @@ namespace EventsApp.Models.EntityModels
         [StringLength(11)]
         public string YouTubeUrl { get; set; }
 
+        public int Rating { get; set; }
+
         public virtual Promoter Owner { get; set; }
 
         public virtual Category  Category { get; set; }

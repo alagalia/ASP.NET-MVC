@@ -1,20 +1,19 @@
+using System;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EventsApp.Data.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<EventsApp.Data.EventsAppContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<EventsAppContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(EventsApp.Data.EventsAppContext context)
+        protected override void Seed(EventsAppContext context)
         {
             if (!context.Roles.Any(role => role.Name == "Admin"))
             {

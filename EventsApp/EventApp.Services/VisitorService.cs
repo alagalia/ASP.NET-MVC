@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
+using EventApp.Services.Intefaces;
 using EventsApp.Models.EntityModels;
-using EventsApp.Models.ViewModels.Event;
 using EventsApp.Models.ViewModels.Visitor;
 
 namespace EventApp.Services
 {
-    public class VisitorService : Service
+    public class VisitorService : Service, IVisitorService
     {
         public IEnumerable<MyEventVisitorVm> GetEveentsVms(string currentUserId)
         {

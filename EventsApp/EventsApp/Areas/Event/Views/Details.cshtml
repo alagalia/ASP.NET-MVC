@@ -1,10 +1,14 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using EventsApp.CustomHelpers
+@using Microsoft.AspNet.Identity
 @model EventsApp.Models.ViewModels.Event.EventDetailsVm
 @{ Layout = "~/Views/Shared/_Layout.cshtml"; }
-@{ var loggerdUserId = System.Web.HttpContext.Current.User.Identity.GetUserId(); }
+
+@{ var loggerdUserId = HttpContext.Current.User.Identity.GetUserId(); }
 @{
     ViewBag.Title = "Details";
 }
+
+
 
 
 <div class="container body-content">
@@ -31,9 +35,8 @@
                     <iframe src="http://www.youtube.com/embed/@Model.YouTubeUrl" scrolling="no" frameborder="0" style="position: relative; height: 100%; width: 100%;"></iframe>
                 </div>
                 <div class="col-sm-4 col-md-4 col-lg-4">
-                    <img class="crop alignleft post-image" src="@Model.ImageUrl" alt="@Model.Id" />
+                    <img class="crop alignleft post-image" src="@Model.ImageUrl" alt="@Model.Id"/>
                 </div>
-
                 <div class="col-sm-4 col-md-4 col-lg-4">
                     <div>
                         <h4>
