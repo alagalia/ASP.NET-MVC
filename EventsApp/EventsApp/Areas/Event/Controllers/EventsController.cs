@@ -135,7 +135,7 @@ namespace EventsApp.Areas.Event.Controllers
             return View("~/Areas/Event/Views/Details.cshtml", @event);
         }
 
-        // POST: Events/Delete/5 //TODO: fix action name with delete
+        // POST: Events/Delete/5 //
         [HttpPost]
         [Route("Delete")]
         //[ValidateAntiForgeryToken]

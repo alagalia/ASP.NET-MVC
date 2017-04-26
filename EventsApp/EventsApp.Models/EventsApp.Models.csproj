@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributies\CategoryIdAttribute.cs" />
+    <Compile Include="BindingModels\EditEventBm.cs" />
     <Compile Include="BindingModels\AddEventBm.cs" />
     <Compile Include="BindingModels\CommentBm.cs" />
     <Compile Include="BindingModels\EditInfoPromoterBm.cs" />

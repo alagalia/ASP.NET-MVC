@@ -35,7 +35,7 @@ namespace EventsApp
 
                 expression.CreateMap<Event, EventDetailsVm>()
                     .ForMember(dest => dest.Owner, opt => opt.MapFrom(src => src.Owner))
-                    .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Id))
+                    .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category.Name))
                     .ForMember(dest => dest.CommentsCounter, opt => opt.MapFrom(src => src.Comments.Count));
 
                 expression.CreateMap<Event, EventAllVm>()

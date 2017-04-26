@@ -27,5 +27,4 @@ namespace EventsApp.Data
             return new EventsAppContext();
         }
     }
-
 }

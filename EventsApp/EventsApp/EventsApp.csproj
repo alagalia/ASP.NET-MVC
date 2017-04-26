@@ -241,8 +241,6 @@
     <Content Include="Areas\Home\Views\Index.cshtml" />
     <Content Include="Areas\Promoter\Views\web.config" />
     <Content Include="Areas\Promoter\Views\All.cshtml" />
-    <Content Include="Areas\Promoter\Views\Create.cshtml" />
-    <Content Include="Areas\Promoter\Views\Delete.cshtml" />
     <Content Include="Areas\Promoter\Views\Details.cshtml" />
     <Content Include="Areas\Promoter\Views\EditProfile.cshtml" />
     <Content Include="Areas\Account\Views\web.config" />
@@ -266,6 +264,8 @@
     <Content Include="Areas\Manage\Views\ManageLogins.cshtml" />
     <Content Include="Areas\Manage\Views\SetPassword.cshtml" />
     <Content Include="Areas\Manage\Views\VerifyPhoneNumber.cshtml" />
+    <Content Include="Areas\Promoter\Views\EditEvent - Copy.cshtml" />
+    <Content Include="Areas\Promoter\Views\EditEvent.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -293,7 +293,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -305,6 +305,7 @@
     <Content Include="Views\Shared\_CategoriesForEventAll.cshtml" />
     <Content Include="Views\Shared\_LocationsListForEventAll.cshtml" />
     <Content Include="Views\Shared\DateTime.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Account\Views\Shared\" />

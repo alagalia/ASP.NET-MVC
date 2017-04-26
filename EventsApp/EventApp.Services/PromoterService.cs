@@ -35,13 +35,6 @@ namespace EventApp.Services
         {
             Promoter promoter = this.Context.Promoters.FirstOrDefault(p => p.User.Id == currentUserId);
             EditInfoPromoterVm vm = Mapper.Map<Promoter, EditInfoPromoterVm>(promoter);
-            //EditInfoPromoterVm vm = new EditInfoPromoterVm()
-            //{
-            //    Id = promoter.Id,
-            //    Description = promoter.Description,
-            //    Contacts = promoter.Contacts,
-            //    Name = promoter.Name
-            //};
             return vm;
         }
 
@@ -56,10 +49,37 @@ namespace EventApp.Services
             this.Context.SaveChanges();
         }
 
+        public void EditEventInfo(EditEventBm bm)
+        {
+            Event ev = this.Context.Events.Find(bm.Id);
+            if (ev == null)
+            {
+                return;
+            }
+            ev.Title = bm.Title;
+            ev.Location = bm.Location;
+            ev.StartDateTime = bm.StartDateTime;
+            ev.Address = bm.Address;
+            ev.Description = bm.Description;
+            ev.ImageUrl = bm.ImageUrl;
+            ev.YouTubeUrl = bm.YouTubeUrl;
+            ev.Category = this.Context.Categories.Find(bm.CategoryId);
+
+            Context.Entry(ev).State = EntityState.Modified;
+            this.Context.SaveChanges();
+        }
+
         public IEnumerable<PromoterInfoVm> GetPromoterInfoVms()
         {
             IEnumerable<Promoter> promoters = this.Context.Promoters;
             return Mapper.Map<IEnumerable<Promoter>, IEnumerable<PromoterInfoVm>>(promoters);
         }
+
+        public EventDetailsVm GetEventInfoVm(int id)
+        {
+            Event ev = this.Context.Events.Find(id);
+            return Mapper.Map<Event, EventDetailsVm>(ev);
+        }
+        
     }
 }
