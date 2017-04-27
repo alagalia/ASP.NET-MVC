@@ -26,7 +26,7 @@ namespace EventsApp
 
 
                 expression.CreateMap<AddEventBm, Event>()
-                    .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.Image));
+                    .ForMember(dest => dest.ImageUrl, opt => opt.MapFrom(src => src.ImageUrl));
 
                 expression.CreateMap<Event, EventAllVm>()
                 .ForMember(dest =>dest.CategoryName, opt=>opt.MapFrom(src=>src.Category.Name))

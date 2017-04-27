@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
 using EventApp.Services.Intefaces;
@@ -123,6 +124,22 @@ namespace EventApp.Services
         {
             int result = this.Context.Events.Sum(e => e.Rating)/ this.Context.Events.Count() % 5;
             return result;
+        }
+
+        public void VoteUp(int id)
+        {
+            Event ev = this.Context.Events.Find(id);
+            ev.Rating++;
+            Context.Entry(ev).State = EntityState.Modified;
+            this.Context.SaveChanges();
+        }
+
+        public void VoteDown(int id)
+        {
+            Event ev = this.Context.Events.Find(id);
+            ev.Rating--;
+            Context.Entry(ev).State = EntityState.Modified;
+            this.Context.SaveChanges();
         }
     }
 }

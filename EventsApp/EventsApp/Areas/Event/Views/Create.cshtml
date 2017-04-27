@@ -3,7 +3,6 @@
     ViewBag.Title = "Create";
 }
 @model EventsApp.Models.BindingModels.AddEventBm
-
 <div class="container body-content">
     @using (Html.BeginForm())
     {
@@ -17,26 +16,28 @@
                     <legend>Add new event</legend>
                 </fieldset>
 
-                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Title, new { @class = "col-lg-3 control-label" })
                     <div class="col-lg-9">
                         @Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(m=>m.Title)
+                        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Image, new { @class = "col-lg-3 control-label" })
+                    @Html.LabelFor(m => m.ImageUrl, new { @class = "col-lg-3 control-label" })
                     <div class="col-lg-9">
-                        @Html.EditorFor(m => m.Image, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(m => m.ImageUrl, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.ImageUrl, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Location, new {@class = "col-lg-3 control-label"})
+                    @Html.LabelFor(m => m.Location, new { @class = "col-lg-3 control-label" })
                     <div class="col-lg-9">
-                        @Html.EditorFor(m => m.Location, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.EditorFor(m => m.Location, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -51,6 +52,7 @@
                     @Html.LabelFor(m => m.Description, new { @class = "col-lg-3 control-label" })
                     <div class="col-lg-9">
                         @Html.TextAreaFor(m => m.Description, new { rows = 10, style = "width:100%" })
+                        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -58,33 +60,39 @@
                     @Html.LabelFor(m => m.YouTubeUrl, new { @class = "col-lg-3 control-label" })
                     <div class="col-lg-9">
                         @Html.EditorFor(m => m.YouTubeUrl, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.YouTubeUrl, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.StartDateTime, new {@class = "col-lg-3 control-label"})
+                    @Html.LabelFor(m => m.StartDateTime, new { @class = "col-lg-3 control-label" })
                     <div class="col-lg-9">
-                        @Html.TextBoxFor(m => m.StartDateTime, "yyyy-MM-dd", new {@class = "form-control", @type = "datetime", name = "StartDateTime", id = "StartDateTime"})
+                        @Html.TextBoxFor(m => m.StartDateTime, "yyyy-MM-dd", new { @class = "form-control", @type = "datetime", name = "StartDateTime", id = "StartDateTime" })
+                        @Html.ValidationMessageFor(model => model.StartDateTime, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.Action("CategoriesListForCreateEvent", "Events")
+                    @Html.Label("Category", htmlAttributes: new { @class = "col-lg-3 control-label" })
+                    <div class="col-lg-9">
+                        @Html.Action("CategoriesListForCreateEvent", "Events")
+                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                    </div>
                 </div>
 
-
-
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-info" />
+                    <div class="col-md-offset-7">
+                        <input type="submit" value="Create" class="btn btn-info" />
+                    </div>
                 </div>
             </div>
         </div>
     }
+</div>
 
-    <div>
-        @Html.ActionLink("Back to events", "All")
-    </div>
 
+<div>
+    @Html.ActionLink("Back to events", "All")
 </div>
 
 

@@ -17,8 +17,8 @@
             {
                 <div class="row col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
                     <div class="col-lg-2 col-md-2 col-sm-2">
-                        @using (Html.BeginForm())
-                        {
+                        @using (Html.BeginForm("Delete", "Events", FormMethod.Post))
+                {
                             <input hidden="hidden" name="id" value="@Model.Id" />
                             <div class="form-group">
                                 <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you wish to delete this event?');" />

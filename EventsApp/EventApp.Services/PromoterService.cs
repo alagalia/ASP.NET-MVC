@@ -69,6 +69,11 @@ namespace EventApp.Services
             this.Context.SaveChanges();
         }
 
+        public string GetUserIdAsStringById(int id)
+        {
+            return this.Context.Promoters.Find(id).User.Id;
+        }
+
         public IEnumerable<PromoterInfoVm> GetPromoterInfoVms()
         {
             IEnumerable<Promoter> promoters = this.Context.Promoters;
