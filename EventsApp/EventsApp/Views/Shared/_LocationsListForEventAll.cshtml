@@ -6,8 +6,6 @@
     <span class="form-group">
         <input id="locBtn" type="submit" value="Search" class="btn btn-info pull-right"/>
     </span>
-    <hr/>
-    @Html.ActionLink("Clear filter", "All", null, htmlAttributes: new { @class = "btn btn-info pull-right" })
 
 }
 @Scripts.Render("~/bundles/jquery")
@@ -15,9 +13,7 @@
     $(function () {
         $('#locBtn').onclick(function () {
             var url = $(this).val();
-            //if (url != null && url !== '') {
             window.location.href = "Location/" + url;
-            //}
         });
     });
 </script>

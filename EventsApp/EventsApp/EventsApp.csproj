@@ -237,7 +237,6 @@
     <Content Include="Areas\Event\Views\AllMy.cshtml" />
     <Content Include="Areas\Home\Views\web.config" />
     <Content Include="Areas\Home\Views\Contact.cshtml" />
-    <Content Include="Areas\Home\Views\Events.cshtml" />
     <Content Include="Areas\Home\Views\Index.cshtml" />
     <Content Include="Areas\Promoter\Views\web.config" />
     <Content Include="Areas\Promoter\Views\All.cshtml" />
@@ -264,7 +263,6 @@
     <Content Include="Areas\Manage\Views\ManageLogins.cshtml" />
     <Content Include="Areas\Manage\Views\SetPassword.cshtml" />
     <Content Include="Areas\Manage\Views\VerifyPhoneNumber.cshtml" />
-    <Content Include="Areas\Promoter\Views\EditEvent - Copy.cshtml" />
     <Content Include="Areas\Promoter\Views\EditEvent.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -281,7 +279,6 @@
     <Content Include="Areas\Event\Views\Create.cshtml" />
     <Content Include="Areas\Event\Views\Delete.cshtml" />
     <Content Include="Areas\Event\Views\Details.cshtml" />
-    <Content Include="Areas\Event\Views\Edit.cshtml" />
     <Content Include="Areas\Event\Views\All.cshtml" />
     <Content Include="Areas\Event\Views\Categories.cshtml" />
     <Content Include="Web.config" />

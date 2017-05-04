@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Routing;
 using EventApp.Services;
 using EventApp.Services.Intefaces;
 using EventsApp.Attributies;
@@ -43,6 +45,11 @@ namespace EventsApp.Areas.Event.Controllers
         [Route("Location/{name}")]
         public ActionResult Location(string name, int? pageNumber)
         {
+            if (name == null)
+            {
+                name = (string)this.RouteData.Values["id"];
+            }
+
             IEnumerable<EventAllVm> vm = this.service.GetEventByLocationVms(name).ToList().ToPagedList(pageNumber ?? 1, 6); ;
             return View("~/Areas/Event/Views/All.cshtml", vm);
         }
@@ -51,6 +58,7 @@ namespace EventsApp.Areas.Event.Controllers
         //GET: Events/MyEvents
         [HttpGet]
         [Route("MyEvents")]
+        [MyAuthorize(Roles = "Promoter")]
         public ActionResult MyEvents()
         {
             string currentUserId = User.Identity.GetUserId();
@@ -128,17 +136,13 @@ namespace EventsApp.Areas.Event.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Comment([Bind] CommentBm bind)
         {
-            var param = RouteData.Values["Id"];
-            if (param == null)
+            if (bind.EventId <=0 )
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            int id = int.Parse(param.ToString());
-            if (id <=0 )
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            this.service.AddComment(id, bind);
+            string currentUserId = User.Identity.GetUserId();
+
+            this.service.AddComment(currentUserId, bind);
             return Redirect(this.Request.UrlReferrer.AbsolutePath);
         }
         
@@ -215,13 +219,12 @@ namespace EventsApp.Areas.Event.Controllers
         }
 
         //@Html.Action
-        [ChildActionOnly]
-        public ActionResult CommentListForDetailPage(int eventId)
+        //[ChildActionOnly]
+        public ActionResult CommentListForDetailPage()
         {
-            IEnumerable<CommentVm> comments = this.service.GetCommentVms(eventId);
+            string id = (string)this.RouteData.Values["Id"];
+            IEnumerable<CommentVm> comments = this.service.GetCommentVms(int.Parse(id));
             return PartialView("~/Areas/Event/Views/Shared/_Comments.cshtml", comments);
         }
-
-
     }
 }

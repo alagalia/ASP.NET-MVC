@@ -111,10 +111,11 @@ namespace EventApp.Services
             this.Context.SaveChanges();
         }
 
-        public void AddComment(int id, CommentBm comments)
+        public void AddComment(string currentUserId, CommentBm bm)
         {
-            Event ev = this.Context.Events.Find(id);
-            Comment  comment  = Mapper.Map<CommentBm,Comment>(comments);
+            Event ev = this.Context.Events.Find(bm.EventId);
+            Comment  comment  = Mapper.Map<CommentBm,Comment>(bm);
+            comment.User = this.Context.Users.FirstOrDefault(x => x.Id == currentUserId);
             ev.Comments.Add(comment);
             Context.SaveChanges();
 

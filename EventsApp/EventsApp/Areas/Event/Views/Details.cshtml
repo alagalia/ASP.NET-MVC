@@ -10,7 +10,7 @@
 <div class="container body-content">
     <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="title">
-            <h4 class="text-center" style="color: orange; font-size: 2.5em" >
+            <h4 class="text-center" style="color: orange; font-size: 2.5em">
                 @Html.DisplayFor(model => model.Title)
             </h4>
             @if (User.IsInRole("Admin") || loggerdUserId == @Model.Owner.User.Id)
@@ -18,15 +18,15 @@
                 <div class="row col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
                     <div class="col-lg-2 col-md-2 col-sm-2">
                         @using (Html.BeginForm("Delete", "Events", FormMethod.Post))
-                {
-                            <input hidden="hidden" name="id" value="@Model.Id" />
+                        {
+                            <input hidden="hidden" name="id" value="@Model.Id"/>
                             <div class="form-group">
-                                <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you wish to delete this event?');" />
+                                <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you wish to delete this event?');"/>
                             </div>
                         }
                     </div>
                     <div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-lg-2 col-md-2 col-sm-2">
-                        @Html.ActionLink("Edit", "EditEvent", "Promoters", new { id = @Model.Id}, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Edit", "EditEvent", "Promoters", new {id = @Model.Id}, new {@class = "btn btn-warning"})
                     </div>
                 </div>
             }
@@ -38,7 +38,7 @@
                     <iframe src="http://www.youtube.com/embed/@Model.YouTubeUrl" scrolling="no" frameborder="0" style="position: relative; height: 100%; width: 100%;"></iframe>
                 </div>
                 <div class="col-sm-4 col-md-4 col-lg-4">
-                    <img class="crop alignleft post-image" src="@Model.ImageUrl" alt="@Model.Id" />
+                    <img class="crop alignleft post-image" src="@Model.ImageUrl" alt="@Model.Id"/>
                 </div>
                 <div class="col-sm-4 col-md-4 col-lg-4">
                     <div>
@@ -53,7 +53,7 @@
                     </div>
                     <div>
                         <h4>
-                            <span style="color: orange;"><strong>LOCATION: </strong></span> @Html.ActionLink(@Html.DisplayFor(model => model.Location).ToString(), "Location", "Events", new { id = Model.Location }, null)
+                            <span style="color: orange;"><strong>LOCATION: </strong></span> @Html.ActionLink(@Html.DisplayFor(model => model.Location).ToString(), "Location", "Events", new {id = Model.Location}, null)
                         </h4>
                     </div>
                     <div>
@@ -76,7 +76,7 @@
                 <div style="height: 15px; border-bottom: 1px solid orange" class="col-sm-12 col-md-12 col-lg-12"></div>
                 <div>
                     <h4>
-                        <span style="color: orange;"><strong>Details about promoter: </strong></span>                         @Html.ActionLink(@Html.DisplayFor(model => model.Owner.Name).ToString(), "Details", "Promoters", new { id = Model.Owner.Id }, null)
+                        <span style="color: orange;"><strong>Details about promoter: </strong></span>                         @Html.ActionLink(@Html.DisplayFor(model => model.Owner.Name).ToString(), "Details", "Promoters", new {id = Model.Owner.Id}, null)
 
                     </h4>
                     <p>
@@ -99,64 +99,75 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                        @Html.ValidationSummary(false, "", new {@class = "text-danger"})
                         <div class="form-group">
-                            <input name="EventId" type="hidden" value="@Model.Id" class="form-control" />
+                            <input name="EventId" type="hidden" value="@Model.Id" class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Join in" class="btn btn-info" />
+                            <input type="submit" value="Join in" class="btn btn-info"/>
                         </div>
                     }
                 }
             </div>
             <div style="height: 15px; border-bottom: 1px solid orange" class="col-sm-12 col-md-12 col-lg-12"></div>
             <div class="ratings">
-                <p class="pull-right">@Model.CommentsCounter coments</p>
                 <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star glyphicon-star-empty"></span>
+                    <button class="btn btn-default" onclick="LoadComments()">
+                        Show Comments
+                    </button>
+                    <div id="cont">
+
+                    </div>
                 </p>
             </div>
+
+
         </div>
+
         <div>
-        </div>
-    </div>
 
+            @*@Html.Action("CommentListForDetailPage", "Events", new {eventId = @Model.Id})*@
 
-    @*<div>
-            <h3>Comments</h3>
-            <div class="">
-                @Html.Action("CommentListForDetailPage", "Events", new { eventId = @Model.Id })
-
-
-                <div>
-                    @using (Html.BeginForm($"Comment/{@ViewBag.Eventid}", "Events"))
+            <div class="col-lg-11">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("Comment", "Events", FormMethod.Post))
                     {
-                        <div class="col-sm-6 col-lg-6 col-md-6">
-                            @Html.TextArea("Content", new { rows = 10, columns = 40, @class = "" })
-                        </div>
+                        <div style="height: 15px; border-bottom: 1px solid orange" class="col-sm-12 col-md-12 col-lg-12"></div>
+                        <br/>
+                        <fieldset>
+                            @Html.AntiForgeryToken()
+                            <h4 >Add comment</h4>
+                            <hr/>
+                            <section>
+                                <input type="number" name="EventId" value="@Model.Id" hidden="hidden"/>
 
+                                <div class="form-group">
+                                    <input type="text" placeholder="Title" name="Title" style="width: 100%"/>
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="Content" placeholder="Enter text here..." style="width: 100%"></textarea>
+                                </div>
 
-                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            @Html.Editor("Title", new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessage("Title")
-                        </div>
-
-                        <div class="form-group">
-                            <input type="submit" value="Submit" class="btn btn-danger" />
-                        </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-default" value="Post"/>
+                                </div>
+                            </section>
+                        </fieldset>
                     }
-
-                </div>
+                }
             </div>
-        </div>*@
+        </div>
+
+    </div>
 </div>
 
-@*<p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>*@
+<div>
+    @Html.ActionLink("Back to events", "All")
+</div>
+
+<script>
+    function LoadComments() {
+        $("#cont").load("/events/CommentListForDetailPage/"+ @Model.Id);
+    }
+</script>

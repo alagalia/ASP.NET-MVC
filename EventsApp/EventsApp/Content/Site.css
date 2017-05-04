@@ -123,3 +123,11 @@ textarea {
 #hidden {
     background: orange
 }
+
+.thumbnail {
+    height: 550px;
+}
+
+.eventTitle {
+    height: 50px;
+}

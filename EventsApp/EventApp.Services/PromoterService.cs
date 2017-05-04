@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
@@ -41,11 +42,14 @@ namespace EventApp.Services
         public void EditInfoPromoter(EditInfoPromoterBm bm)
         {
             Promoter promoter = this.Context.Promoters.Find(bm.Id);
-            promoter.Contacts = bm.Contacts;
-            promoter.Name = bm.Name;
-            promoter.Description = bm.Description;
+            if (promoter != null)
+            {
+                promoter.Contacts = bm.Contacts;
+                promoter.Name = bm.Name;
+                promoter.Description = bm.Description;
 
-            Context.Entry(promoter).State = EntityState.Modified;
+                Context.Entry(promoter).State = EntityState.Modified;
+            }
             this.Context.SaveChanges();
         }
 
@@ -71,7 +75,23 @@ namespace EventApp.Services
 
         public string GetUserIdAsStringById(int id)
         {
-            return this.Context.Promoters.Find(id).User.Id;
+            Promoter promoter = this.Context.Promoters.Find(id);
+            if (promoter != null)
+            {
+                return promoter.User.Id;
+            }
+            throw new ArgumentException("No such promoter in DB!");
+        }
+
+        public void DeletePromoter(int id)
+        {
+            Promoter promoter = this.Context.Promoters.Find(id);
+            if (promoter == null)
+            {
+                throw new ArgumentException("No such promoter in DB!");
+            }
+            this.Context.Promoters.Remove(promoter);
+            this.Context.SaveChanges();
         }
 
         public IEnumerable<PromoterInfoVm> GetPromoterInfoVms()

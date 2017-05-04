@@ -20,10 +20,11 @@
         @Html.DisplayFor(x => x.StartDateTime)
         <div class="caption">
             <div class="title">
-                <h4>
+                <h4  class="eventTitle">
                     @Html.ActionLink(@Html.DisplayFor(model => model.Title).ToString(), "Details", "Events", new {id = Model.Id}, null)
                 </h4>
             </div>
+            
             <div class="truncate">
                 <p>
                     @Html.DisplayFor(model => model.Description)

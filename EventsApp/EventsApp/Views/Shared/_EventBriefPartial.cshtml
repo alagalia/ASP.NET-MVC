@@ -12,16 +12,18 @@
             </h3>
             <br />
             <div class="entry-content">
-                @Html.DisplayNameFor(@Model => Model.StartDateTime):
-                @Html.DisplayFor(m => m.StartDateTime, "{0:dd/MM/yyyy}")
+                @Html.DisplayNameFor(x => x.StartDateTime)
+                @Html.DisplayFor(x => x.StartDateTime)
             </div>
-            <img class="crop" src="@Model.ImageUrl" class="alignleft post-image" alt="@Model.Id" />
+            <img class="crop alignleft post-image" src="@Model.ImageUrl" alt="@Model.Id" />
             <div class="entry-content">
                 @Html.DisplayNameFor(@Model => Model.Category):
                 @Html.ActionLink(@Html.DisplayFor(model => model.Category.Name).ToString(), "Categories", "Events", new { id = Model.Category.Id }, null)
             </div>
             <div class="crop entry-content">
-                <p class="truncate" contenteditable="true">Add discription here Bacon ipsum dolor sit amet kielbasa swine pariatur consequat consectetur esse tongue ea biltong. Fatback dolore ullamco labore in spare ribs ad hamburger cupidatat tongue. Nisi frankfurter duis proident, officia ham aliqua.</p>
+                <p class="truncate" contenteditable="true">
+                    @Html.DisplayFor(model => model.Description)
+                </p>
             </div>
             <p >@Html.ActionLink("Details", "Details", "Events", new { id = Model.Id, }, new { @class = "pull-right" })</p>
     </div>
